@@ -11,7 +11,7 @@ End of script - Comparison ended successfully
 ./projects/02/Inc16.tst
 End of script - Comparison ended successfully
 ./projects/02/Mul.tst
-Comparison failure at line 4
+Comparison failure at line 3
 ./projects/02/ShiftLeft.tst
 End of script - Comparison ended successfully
 ./projects/02/ShiftRight.tst

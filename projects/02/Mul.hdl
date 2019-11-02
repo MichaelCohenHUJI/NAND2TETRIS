@@ -3,4 +3,205 @@ CHIP Mul{
     OUT out[16];
 
     PARTS:
+
+    ShiftLeft(in=a, out=out0);
+    Mux16(a=a, b=out0, sel=b[0], out=a1);
+
+    ShiftLeft(in=a, out=out1u1);
+    ShiftLeft(in=out1u1, out=out1u2);
+    Mux16(a[0..15]=false, b=out1u2, sel=b[1], out=out1uadd);
+    Add16(a=a1, b=out1uadd, out=a2);
+
+    ShiftLeft(in=a,out=out2u1);
+    ShiftLeft(in=out2u1, out=out2u2);
+    ShiftLeft(in=out2u2, out=out2u3);
+    Mux16(a[0..15]=false, b=out2u3, sel=b[2], out=out2uadd);
+    Add16(a=a2, b=out2uadd, out=a3);
+
+
+    ShiftLeft(in=a,out=out3u1);
+    ShiftLeft(in=out3u1, out=out3u2);
+    ShiftLeft(in=out3u2, out=out3u3);
+    ShiftLeft(in=out3u3, out=out3u4);
+    Mux16(a[0..15]=false, b=out3u4, sel=b[3], out=out3uadd);
+    Add16(a=a3, b=out3uadd, out=a4);
+
+
+    ShiftLeft(in=a,out=out4u1);
+    ShiftLeft(in=out4u1, out=out4u2);
+    ShiftLeft(in=out4u2, out=out4u3);
+    ShiftLeft(in=out4u3, out=out4u4);
+    ShiftLeft(in=out4u4, out=out4u5);
+    Mux16(a[0..15]=false, b=out4u5, sel=b[4], out=out4uadd);
+    Add16(a=a4, b=out4uadd, out=a5);
+
+
+    ShiftLeft(in=a,out=out5u1);
+    ShiftLeft(in=out5u1, out=out5u2);
+    ShiftLeft(in=out5u2, out=out5u3);
+    ShiftLeft(in=out5u3, out=out5u4);
+    ShiftLeft(in=out5u4, out=out5u5);
+    ShiftLeft(in=out5u5, out=out5u6);
+    Mux16(a[0..15]=false, b=out5u6, sel=b[5], out=out5uadd);
+    Add16(a=a5, b=out5uadd, out=a6);
+
+
+    ShiftLeft(in=a,out=out6u1);
+    ShiftLeft(in=out6u1, out=out6u2);
+    ShiftLeft(in=out6u2, out=out6u3);
+    ShiftLeft(in=out6u3, out=out6u4);
+    ShiftLeft(in=out6u4, out=out6u5);
+    ShiftLeft(in=out6u5, out=out6u6);
+    ShiftLeft(in=out6u6, out=out6u7);
+    Mux16(a[0..15]=false, b=out6u7, sel=b[6], out=out6uadd);
+    Add16(a=a6, b=out6uadd, out=a7);
+
+
+    ShiftLeft(in=a,out=out7u1);
+    ShiftLeft(in=out7u1, out=out7u2);
+    ShiftLeft(in=out7u2, out=out7u3);
+    ShiftLeft(in=out7u3, out=out7u4);
+    ShiftLeft(in=out7u4, out=out7u5);
+    ShiftLeft(in=out7u5, out=out7u6);
+    ShiftLeft(in=out7u6, out=out7u7);
+    ShiftLeft(in=out7u7, out=out7u8);
+    Mux16(a[0..15]=false, b=out7u8, sel=b[7], out=out7uadd);
+    Add16(a=a7, b=out7uadd, out=a8);
+
+
+    ShiftLeft(in=a,out=out8u1);
+    ShiftLeft(in=out8u1, out=out8u2);
+    ShiftLeft(in=out8u2, out=out8u3);
+    ShiftLeft(in=out8u3, out=out8u4);
+    ShiftLeft(in=out8u4, out=out8u5);
+    ShiftLeft(in=out8u5, out=out8u6);
+    ShiftLeft(in=out8u6, out=out8u7);
+    ShiftLeft(in=out8u7, out=out8u8);
+    ShiftLeft(in=out8u8, out=out8u9);
+    Mux16(a[0..15]=false, b=out8u9, sel=b[8], out=out8uadd);
+    Add16(a=a8, b=out8uadd, out=a9);
+
+
+    ShiftLeft(in=a,out=out9u1);
+    ShiftLeft(in=out9u1, out=out9u2);
+    ShiftLeft(in=out9u2, out=out9u3);
+    ShiftLeft(in=out9u3, out=out9u4);
+    ShiftLeft(in=out9u4, out=out9u5);
+    ShiftLeft(in=out9u5, out=out9u6);
+    ShiftLeft(in=out9u6, out=out9u7);
+    ShiftLeft(in=out9u7, out=out9u8);
+    ShiftLeft(in=out9u8, out=out9u9);
+    ShiftLeft(in=out9u9, out=out9u10);
+    Mux16(a[0..15]=false, b=out9u10, sel=b[9], out=out9uadd);
+    Add16(a=a9, b=out9uadd, out=a10);
+
+
+    ShiftLeft(in=a,out=out10u1);
+    ShiftLeft(in=out10u1, out=out10u2);
+    ShiftLeft(in=out10u2, out=out10u3);
+    ShiftLeft(in=out10u3, out=out10u4);
+    ShiftLeft(in=out10u4, out=out10u5);
+    ShiftLeft(in=out10u5, out=out10u6);
+    ShiftLeft(in=out10u6, out=out10u7);
+    ShiftLeft(in=out10u7, out=out10u8);
+    ShiftLeft(in=out10u8, out=out10u9);
+    ShiftLeft(in=out10u9, out=out10u10);
+    ShiftLeft(in=out10u10, out=out10u11);
+    Mux16(a[0..15]=false, b=out10u11, sel=b[10], out=out10uadd);
+    Add16(a=a10, b=out10uadd, out=a11);
+
+
+    ShiftLeft(in=a,out=out11u1);
+    ShiftLeft(in=out11u1, out=out11u2);
+    ShiftLeft(in=out11u2, out=out11u3);
+    ShiftLeft(in=out11u3, out=out11u4);
+    ShiftLeft(in=out11u4, out=out11u5);
+    ShiftLeft(in=out11u5, out=out11u6);
+    ShiftLeft(in=out11u6, out=out11u7);
+    ShiftLeft(in=out11u7, out=out11u8);
+    ShiftLeft(in=out11u8, out=out11u9);
+    ShiftLeft(in=out11u9, out=out11u10);
+    ShiftLeft(in=out11u10, out=out11u11);
+    ShiftLeft(in=out11u11, out=out11u12);
+    Mux16(a[0..15]=false, b=out11u12, sel=b[11], out=out11uadd);
+    Add16(a=a11, b=out11uadd, out=a12);
+
+
+    ShiftLeft(in=a,out=out12u1);
+    ShiftLeft(in=out12u1, out=out12u2);
+    ShiftLeft(in=out12u2, out=out12u3);
+    ShiftLeft(in=out12u3, out=out12u4);
+    ShiftLeft(in=out12u4, out=out12u5);
+    ShiftLeft(in=out12u5, out=out12u6);
+    ShiftLeft(in=out12u6, out=out12u7);
+    ShiftLeft(in=out12u7, out=out12u8);
+    ShiftLeft(in=out12u8, out=out12u9);
+    ShiftLeft(in=out12u9, out=out12u10);
+    ShiftLeft(in=out12u10, out=out12u11);
+    ShiftLeft(in=out12u11, out=out12u12);
+    ShiftLeft(in=out12u12, out=out12u13);
+    Mux16(a[0..15]=false, b=out12u13, sel=b[12], out=out12uadd);
+    Add16(a=a12, b=out12uadd, out=a13);
+
+
+    ShiftLeft(in=a,out=out13u1);
+    ShiftLeft(in=out13u1, out=out13u2);
+    ShiftLeft(in=out13u2, out=out13u3);
+    ShiftLeft(in=out13u3, out=out13u4);
+    ShiftLeft(in=out13u4, out=out13u5);
+    ShiftLeft(in=out13u5, out=out13u6);
+    ShiftLeft(in=out13u6, out=out13u7);
+    ShiftLeft(in=out13u7, out=out13u8);
+    ShiftLeft(in=out13u8, out=out13u9);
+    ShiftLeft(in=out13u9, out=out13u10);
+    ShiftLeft(in=out13u10, out=out13u11);
+    ShiftLeft(in=out13u11, out=out13u12);
+    ShiftLeft(in=out13u12, out=out13u13);
+    ShiftLeft(in=out13u13, out=out13u14);
+    Mux16(a[0..15]=false, b=out13u14, sel=b[13], out=out13uadd);
+    Add16(a=a13, b=out13uadd, out=a14);
+
+
+    ShiftLeft(in=a,out=out14u1);
+    ShiftLeft(in=out14u1, out=out14u2);
+    ShiftLeft(in=out14u2, out=out14u3);
+    ShiftLeft(in=out14u3, out=out14u4);
+    ShiftLeft(in=out14u4, out=out14u5);
+    ShiftLeft(in=out14u5, out=out14u6);
+    ShiftLeft(in=out14u6, out=out14u7);
+    ShiftLeft(in=out14u7, out=out14u8);
+    ShiftLeft(in=out14u8, out=out14u9);
+    ShiftLeft(in=out14u9, out=out14u10);
+    ShiftLeft(in=out14u10, out=out14u11);
+    ShiftLeft(in=out14u11, out=out14u12);
+    ShiftLeft(in=out14u12, out=out14u13);
+    ShiftLeft(in=out14u13, out=out14u14);
+    ShiftLeft(in=out14u14, out=out14u15);
+    Mux16(a[0..15]=false, b=out14u15, sel=b[14], out=out14uadd);
+    Add16(a=a14, b=out14uadd, out=out);
+
+
+
+
+    // ShiftLeft(in=a,out=out15u1);
+    // ShiftLeft(in=out15u1, out=out15u2);
+    // ShiftLeft(in=out15u2, out=out15u3);
+    // ShiftLeft(in=out15u3, out=out15u4);
+    // ShiftLeft(in=out15u4, out=out15u5);
+    // ShiftLeft(in=out15u5, out=out15u6);
+    // ShiftLeft(in=out15u6, out=out15u7);
+    // ShiftLeft(in=out15u7, out=out15u8);
+    // ShiftLeft(in=out15u8, out=out15u9);
+    // ShiftLeft(in=out15u9, out=out15u10);
+    // ShiftLeft(in=out15u10, out=out15u11);
+    // ShiftLeft(in=out15u11, out=out15u12);
+    // ShiftLeft(in=out15u12, out=out15u13);
+    // ShiftLeft(in=out15u13, out=out15u14);
+    // ShiftLeft(in=out15u14, out=out15u15);
+    // ShiftLeft(in=out15u15, out=out15u16);
+    // Mux16(a[0..15]=false, b=out15u16, sel=b[15], out=out15uadd);
+    // Add16(a=a15, b=out15uadd, out=out);
+
+
+
 }
