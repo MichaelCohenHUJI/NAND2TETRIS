@@ -9,8 +9,8 @@ CHIP ZeroOrNot16 {
         out[16]; // 16-bit output
 
     PARTS:
-        Zero16(in=x, out=zeros );
-        Mux16(a=x,b=zeros,sel=zx,out=out1);
+        //Zero16(in=x, out=zeros );
+        Mux16(a=x,b[0..15]=false,sel=zx,out=out1);
         Not16(in=out1,out=notx);
         Mux16(a=out1,b=notx,sel=nx,out=out);
 }
