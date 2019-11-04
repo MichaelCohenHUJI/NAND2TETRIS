@@ -1,4 +1,4 @@
-CHIP Shifty{
+CHIP shimon{
      IN in[16];
      OUT out[16];
 

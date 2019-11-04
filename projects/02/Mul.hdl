@@ -6,63 +6,63 @@ CHIP Mul{
 
     And16(a=a, b[0]=b[0], b[1]=b[0], b[2]=b[0], b[3]=b[0], b[4]=b[0], b[5]=b[0], b[6]=b[0], b[7]=b[0], b[8]=b[0], b[9]=b[0], b[10]=b[0], b[11]=b[0], b[12]=b[0], b[13]=b[0], b[14]=b[0], b[15]=b[0], out=zeros);
 
-    Shifty(in=a, out=a1);
+    shimon(in=a, out=a1);
     And16(a=a1, b[0]=b[1], b[1]=b[1], b[2]=b[1], b[3]=b[1], b[4]=b[1], b[5]=b[1], b[6]=b[1], b[7]=b[1], b[8]=b[1], b[9]=b[1], b[10]=b[1], b[11]=b[1], b[12]=b[1], b[13]=b[1], b[14]=b[1], b[15]=b[1], out=ones);
     Add16(a=zeros, b=ones, out=temp1);
 
-    Shifty(in=a1, out=a2);
+    shimon(in=a1, out=a2);
     And16(a=a2, b[0]=b[2], b[1]=b[2], b[2]=b[2], b[3]=b[2], b[4]=b[2], b[5]=b[2], b[6]=b[2], b[7]=b[2], b[8]=b[2], b[9]=b[2], b[10]=b[2], b[11]=b[2], b[12]=b[2], b[13]=b[2], b[14]=b[2], b[15]=b[2], out=twos);
     Add16(a=temp1, b=twos, out=temp2);
 
-    Shifty(in=a2, out=a3);
+    shimon(in=a2, out=a3);
     And16(a=a3, b[0]=b[3], b[1]=b[3], b[2]=b[3], b[3]=b[3], b[4]=b[3], b[5]=b[3], b[6]=b[3], b[7]=b[3], b[8]=b[3], b[9]=b[3], b[10]=b[3], b[11]=b[3], b[12]=b[3], b[13]=b[3], b[14]=b[3], b[15]=b[3], out=threes);
     Add16(a=temp2, b=threes, out=temp3);
 
-    Shifty(in=a3, out=a4);
+    shimon(in=a3, out=a4);
     And16(a=a4, b[0]=b[4], b[1]=b[4], b[2]=b[4], b[3]=b[4], b[4]=b[4], b[5]=b[4], b[6]=b[4], b[7]=b[4], b[8]=b[4], b[9]=b[4], b[10]=b[4], b[11]=b[4], b[12]=b[4], b[13]=b[4], b[14]=b[4], b[15]=b[4], out=fours);
     Add16(a=temp3, b=fours, out=temp4);
 
-    Shifty(in=a4, out=a5);
+    shimon(in=a4, out=a5);
     And16(a=a5, b[0]=b[5], b[1]=b[5], b[2]=b[5], b[3]=b[5], b[4]=b[5], b[5]=b[5], b[6]=b[5], b[7]=b[5], b[8]=b[5], b[9]=b[5], b[10]=b[5], b[11]=b[5], b[12]=b[5], b[13]=b[5], b[14]=b[5], b[15]=b[5], out=fives);
     Add16(a=temp4, b=fives, out=temp5);
 
-    Shifty(in=a5, out=a6);
+    shimon(in=a5, out=a6);
     And16(a=a6, b[0]=b[6], b[1]=b[6], b[2]=b[6], b[3]=b[6], b[4]=b[6], b[5]=b[6], b[6]=b[6], b[7]=b[6], b[8]=b[6], b[9]=b[6], b[10]=b[6], b[11]=b[6], b[12]=b[6], b[13]=b[6], b[14]=b[6], b[15]=b[6], out=sixes);
     Add16(a=temp5, b=sixes, out=temp6);
 
-    Shifty(in=a6, out=a7);
+    shimon(in=a6, out=a7);
     And16(a=a7, b[0]=b[7], b[1]=b[7], b[2]=b[7], b[3]=b[7], b[4]=b[7], b[5]=b[7], b[6]=b[7], b[7]=b[7], b[8]=b[7], b[9]=b[7], b[10]=b[7], b[11]=b[7], b[12]=b[7], b[13]=b[7], b[14]=b[7], b[15]=b[7], out=sevens);
     Add16(a=temp6, b=sevens, out=temp7);
 
-    Shifty(in=a7, out=a8);
+    shimon(in=a7, out=a8);
     And16(a=a8, b[0]=b[8], b[1]=b[8], b[2]=b[8], b[3]=b[8], b[4]=b[8], b[5]=b[8], b[6]=b[8], b[7]=b[8], b[8]=b[8], b[9]=b[8], b[10]=b[8], b[11]=b[8], b[12]=b[8], b[13]=b[8], b[14]=b[8], b[15]=b[8], out=eights);
     Add16(a=temp7, b=eights, out=temp8);
 
-    Shifty(in=a8, out=a9);
+    shimon(in=a8, out=a9);
     And16(a=a9, b[0]=b[9], b[1]=b[9], b[2]=b[9], b[3]=b[9], b[4]=b[9], b[5]=b[9], b[6]=b[9], b[7]=b[9], b[8]=b[9], b[9]=b[9], b[10]=b[9], b[11]=b[9], b[12]=b[9], b[13]=b[9], b[14]=b[9], b[15]=b[9], out=nines);
     Add16(a=temp8, b=nines, out=temp9);
 
-    Shifty(in=a9, out=a10);
+    shimon(in=a9, out=a10);
     And16(a=a10, b[0]=b[10], b[1]=b[10], b[2]=b[10], b[3]=b[10], b[4]=b[10], b[5]=b[10], b[6]=b[10], b[7]=b[10], b[8]=b[10], b[9]=b[10], b[10]=b[10], b[11]=b[10], b[12]=b[10], b[13]=b[10], b[14]=b[10], b[15]=b[10], out=tens);
     Add16(a=temp9, b=tens, out=temp10);
 
-    Shifty(in=a10, out=a11);
+    shimon(in=a10, out=a11);
     And16(a=a11, b[0]=b[11], b[1]=b[11], b[2]=b[11], b[3]=b[11], b[4]=b[11], b[5]=b[11], b[6]=b[11], b[7]=b[11], b[8]=b[11], b[9]=b[11], b[10]=b[11], b[11]=b[11], b[12]=b[11], b[13]=b[11], b[14]=b[11], b[15]=b[11], out=elevens);
     Add16(a=temp10, b=elevens, out=temp11);
 
-    Shifty(in=a11, out=a12);
+    shimon(in=a11, out=a12);
     And16(a=a12, b[0]=b[12], b[1]=b[12], b[2]=b[12], b[3]=b[12], b[4]=b[12], b[5]=b[12], b[6]=b[12], b[7]=b[12], b[8]=b[12], b[9]=b[12], b[10]=b[12], b[11]=b[12], b[12]=b[12], b[13]=b[12], b[14]=b[12], b[15]=b[12], out=twelves);
     Add16(a=temp11, b=twelves, out=temp12);
 
-    Shifty(in=a12, out=a13);
+    shimon(in=a12, out=a13);
     And16(a=a13, b[0]=b[13], b[1]=b[13], b[2]=b[13], b[3]=b[13], b[4]=b[13], b[5]=b[13], b[6]=b[13], b[7]=b[13], b[8]=b[13], b[9]=b[13], b[10]=b[13], b[11]=b[13], b[12]=b[13], b[13]=b[13], b[14]=b[13], b[15]=b[13], out=therteens);
     Add16(a=temp12, b=therteens, out=temp13);
 
-    Shifty(in=a13, out=a14);
+    shimon(in=a13, out=a14);
     And16(a=a14, b[0]=b[14], b[1]=b[14], b[2]=b[14], b[3]=b[14], b[4]=b[14], b[5]=b[14], b[6]=b[14], b[7]=b[14], b[8]=b[14], b[9]=b[14], b[10]=b[14], b[11]=b[14], b[12]=b[14], b[13]=b[14], b[14]=b[14], b[15]=b[14], out=fourteens);
     Add16(a=temp13, b=fourteens, out=temp14);
 
-    Shifty(in=a14, out=a15);
+    shimon(in=a14, out=a15);
     And16(a=a15, b[0]=b[15], b[1]=b[15], b[2]=b[15], b[3]=b[15], b[4]=b[15], b[5]=b[15], b[6]=b[15], b[7]=b[15], b[8]=b[15], b[9]=b[15], b[10]=b[15], b[11]=b[15], b[12]=b[15], b[13]=b[15], b[14]=b[15], b[15]=b[15], out=fifteens);
     Add16(a=temp14, b=fifteens, out=out);
 }
