@@ -1,4 +1,4 @@
-CHIP ShiftLeft{
+CHIP Shifty{
      IN in[16];
      OUT out[16];
 
@@ -18,5 +18,5 @@ CHIP ShiftLeft{
      And(a=in[11],b=in[11],out=out[12]);
      And(a=in[12],b=in[12],out=out[13]);
      And(a=in[13],b=in[13],out=out[14]);
-     And(a=in[15],b=in[15],out=out[15]);
+     And(a=in[14],b=in[14],out=out[15]);
 }
