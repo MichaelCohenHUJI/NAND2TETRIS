@@ -1,0 +1,37 @@
+davidponar, michael_cohen
+===============================================================================
+David Ponarovsky, ID 208504050, david.ponarovsky@cs.huji.ac.il
+Michael Cohen, ID 314884826, michael.cohen3@cs.huji.ac.il
+===============================================================================
+
+                           Project 3 - An HDL File
+                           -----------------------
+
+Submitted Files
+---------------
+README - This file.
+Bit.hdl
+PC.hdl
+RAM8.hdl
+RAM64.hdl
+Register.hdl
+RAM4K.hdl
+RAM16K.hdl
+RAM512.hdl
+
+Remarks
+-------
+implementing the memory has always the same pattern, selecting the memory
+address by using some Dmux-chip and than, attachments one-level-lower chips,
+after that selecting the output using som mux-chip.  
+
+  DMux...(....);
+  LOWMEMORYCHIP(.....);
+  LOWMEMORYCHIP(.....);
+  LOWMEMORYCHIP(.....);
+  LOWMEMORYCHIP(.....);
+  LOWMEMORYCHIP(.....);
+  LOWMEMORYCHIP(.....);
+  LOWMEMORYCHIP(.....);
+  LOWMEMORYCHIP(.....);
+  Mux...(....);

@@ -4,15 +4,31 @@ David Ponarovsky, ID 208504050, david.ponarovsky@cs.huji.ac.il
 Michael Cohen, ID 314884826, michael.cohen3@cs.huji.ac.il
 ===============================================================================
 
-                           Project X - An HDL File
+                           Project 1 - An HDL File
                            -----------------------
-
 
 Submitted Files
 ---------------
 README - This file.
-Derives.hdl - The Derives chip.
+And.hdl - return 'logic and' of two currents.
+And16.hdl - returns the 'logic and' of 16 pairs of currents.
+DMux.hdl - returns two current. the first will equal to the in current in case
+ sel equal zero, otherwise the second.
+DMux4Way.hdl - same as above but distributing for 4 currents.
+DMux8Way.hdl - same as above but distributing for 8 currents.
+Mux.hdl - returns the first current if the third is positive. otherwise
+ the seconed current.
+Mux16.hdl - returns the first group of the 16 currents if the third is positive
+ otherwise returns the second group.
+Mux4Way16.hdl - returns the current which 'sel' is the binary representation of.
+Mux8Way16.hdl - the same as above, but selecting from 8 currents.
+Not.hdl - returns the opposite current.
+Not16.hdl - returns the 'opposite' for each from the 16 input currents.
+Or.hdl - return 'logic or' of two currents.
+Or16.hdl - returns the 'logic or' of 16 pairs of currents.
+Or8Way.hdl - returns positive current if one of the 8 input current is positive.
+Xor.hdl -returns the 'xor operation' of two currents.
 
 Remarks
 -------
-* The chip was actually implemented by simply using an Or chip. cool!
+we don't made something sophisticated that worth an explanation.
