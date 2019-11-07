@@ -1,0 +1,29 @@
+davidponar, michael_cohen
+===============================================================================
+David Ponarovsky, ID 208504050, david.ponarovsky@cs.huji.ac.il
+Michael Cohen, ID 314884826, michael.cohen3@cs.huji.ac.il
+===============================================================================
+
+                           Project 2 - An HDL File
+                           -----------------------
+
+Submitted Files
+---------------
+README - This file.
+ALU.hdl
+Add16.hdl
+FullAdder.hdl
+HalfAdder.hdl
+Inc16.hdl
+Mul.hdl
+ShiftLeft.hdl
+ShiftRight.hdl
+shimon.hdl
+
+
+Remarks
+-------
+to get an efficient way of implementing binary multiplication we had to create a new chip
+similar to shiftleft that do not keep the sign of the original number
+we tried a few names and for some reasons the simulator didn't catch them, so we decided
+to call it 'shimon', after our favourite lecturer
