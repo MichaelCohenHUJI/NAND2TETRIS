@@ -61,7 +61,7 @@ CHIP CPU {
         zr, // 1 if (out == 0), 0 otherwise
         ng; // 1 if (out < 0),  0 otherwise
     */
-
+    Mux(a=instruction, b=outM, sel=, out=outMorInst); 
     Register(in=Areg, load=false, out=Areg);
     Register(in=Areg, load=false, out=Dreg);
     Mux16(a=Areg, b=inM, sel=instruction[12], out=AMreg);
