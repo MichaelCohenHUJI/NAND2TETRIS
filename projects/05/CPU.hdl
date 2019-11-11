@@ -41,29 +41,30 @@ CHIP CPU {
     PARTS:
 
 
-
-    Mux16(a=instruction, b=outM, sel=instruction[5], out=Areg);
+    Mux16(a=instruction, b=outMM, sel=instruction[5], out=Areg);
     ARegister(in=Areg, load=instruction[5], out=AregIns);
-    DRegister(in=outM, load=instruction[4], out=Dreg);
+    DRegister(in=outMM, load=instruction[4], out=Dreg);
 
     Mux16(a=inM, b=AregIns, sel=instruction[12], out=AMreg);
     ALU( x=AMreg, y=Dreg, zx=instruction[11], nx=instruction[10],
         zy=instruction[9], ny=instruction[8], f=instruction[7],
-        no=instruction[6], zr=jeq, , ng=jlt,  out=outM);
+        no=instruction[6], zr=jeq, ng=jlt,  out=outMM);
     //Mux16(a=Areg, b=Dreg, sel=instruction[11] ,out=  )
 
-    AND(a=instruction[3], b=instruction[3], out=writeM);
-    AND(a=Areg, b=Areg, out=addressM);
+    And(a=instruction[3], b=instruction[3], out=writeM);
+    And16(a=Areg, b=Areg, out[0..14]=addressM, out[15]=outout);
 
     // jumping ...
-    Not(in=ng, out=posOrZero);
-    Not(in=zr, out=notEqZero);
+    Not(in=jlt, out=posOrZero);
+    Not(in=jeq, out=notEqZero);
     And(a=posOrZero, b=notEqZero, out=jgt);
-    AND(a=instruction[0], b=jlt, out=jltout);
-    AND(a=instruction[1], b=jeq, out=jeqout);
+    And(a=instruction[0], b=jlt, out=jltout);
+    And(a=instruction[1], b=jeq, out=jeqout);
     And(a=instruction[2], b=jgt, out=jgtout);
     Or(a=jltout , b=jeqout, out=jleq);
     Or(a=jleq, b=jgtout, out=jump );
-    PC(in=Areg , load=jump , inc=true , rest=reset , out[0..14]=pc[0..15], out[15]=pcout);
+    PC(in=Areg , load=jump , inc=true , reset=reset , out[0..14]=pc[0..14], out[15]=pcout);
     // Put your code here:
+
+    And16(a=outMM, b=outMM, out=outM);
 }
