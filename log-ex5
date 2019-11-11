@@ -1,18 +1,24 @@
 ./projects/05/ComputerAdd.tst
-C:\Users\davidponar\workspace\nand2\NAND2TETRIS\projects\05/Computer.hdl is not a .hack or .asm file
+Unknown command or component name: ROM32K load Add.hack 
 ./projects/05/ComputerAdd-external.tst
-C:\Users\davidponar\workspace\nand2\NAND2TETRIS\projects\05/Computer.hdl is not a .hack or .asm file
+Unknown command or component name: ROM32K load Add.hack 
 ./projects/05/ComputerMax.tst
-C:\Users\davidponar\workspace\nand2\NAND2TETRIS\projects\05/Computer.hdl is not a .hack or .asm file
+Unknown command or component name: ROM32K load Max.hack 
 ./projects/05/ComputerMax-external.tst
-C:\Users\davidponar\workspace\nand2\NAND2TETRIS\projects\05/Computer.hdl is not a .hack or .asm file
+Unknown command or component name: ROM32K load Max.hack 
 ./projects/05/ComputerRect.tst
-C:\Users\davidponar\workspace\nand2\NAND2TETRIS\projects\05/Computer.hdl is not a .hack or .asm file
+Unknown command or component name: ROM32K load Rect.hack 
 ./projects/05/ComputerRect-external.tst
-C:\Users\davidponar\workspace\nand2\NAND2TETRIS\projects\05/Computer.hdl is not a .hack or .asm file
+Unknown command or component name: ROM32K load Rect.hack 
 ./projects/05/CPU.tst
-C:\Users\davidponar\workspace\nand2\NAND2TETRIS\projects\05/CPU.hdl is not a .hack or .asm file
+No such built-in chip used: DRegister
 ./projects/05/CPU-external.tst
-C:\Users\davidponar\workspace\nand2\NAND2TETRIS\projects\05/CPU.hdl is not a .hack or .asm file
+Comparison failure at line 3
+./projects/05/CpuMul.tst
+No such built-in chip used: DRegister
+./projects/05/ExtendAlu.tst
+Comparison failure at line 2
 ./projects/05/Memory.tst
-C:\Users\davidponar\workspace\nand2\NAND2TETRIS\projects\05/Memory.hdl is not a .hack or .asm file
+Terminate batch job (Y/N)? ^CTerminate batch job (Y/N)? 
+^CTerminate batch job (Y/N)? Terminate batch job (Y/N)? 
+^C
