@@ -40,33 +40,30 @@ CHIP CPU {
 
     PARTS:
 
-    //IN in[16],load,inc,reset;
-    //OUT out[16];
 
-    // CHIP Register {
-    //     IN in[16], load;
-    //     OUT out[16];
-    /*
-    IN
-        x[16], y[16],  // 16-bit inputs
-        zx, // zero the x input?
-        nx, // negate the x input?
-        zy, // zero the y input?
-        ny, // negate the y input?
-        f,  // compute out = x + y (if 1) or x & y (if 0)
-        no; // negate the out output?
 
-    OUT
-        out[16], // 16-bit output
-        zr, // 1 if (out == 0), 0 otherwise
-        ng; // 1 if (out < 0),  0 otherwise
-    */
+    Mux16(a=instruction, b=outM, sel=instruction[5], out=Areg);
+    ARegister(in=Areg, load=instruction[5], out=AregIns);
+    DRegister(in=outM, load=instruction[4], out=Dreg);
 
-    Register(in=Areg, load=false, out=Areg);
-    Register(in=Areg, load=false, out=Dreg);
-    Mux16(a=Areg, b=inM, sel=instruction[12], out=AMreg);
-    ALU( x=AMreg, y=Dreg, )
+    Mux16(a=inM, b=AregIns, sel=instruction[12], out=AMreg);
+    ALU( x=AMreg, y=Dreg, zx=instruction[11], nx=instruction[10],
+        zy=instruction[9], ny=instruction[8], f=instruction[7],
+        no=instruction[6], zr=jeq, , ng=jlt,  out=outM);
     //Mux16(a=Areg, b=Dreg, sel=instruction[11] ,out=  )
-    PC(in= , load= , inc=true , rest=reset , out[0..14]=pc[0..15], out[15]=pcout);
+
+    AND(a=instruction[3], b=instruction[3], out=writeM);
+    AND(a=Areg, b=Areg, out=addressM);
+
+    // jumping ...
+    Not(in=ng, out=posOrZero);
+    Not(in=zr, out=notEqZero);
+    And(a=posOrZero, b=notEqZero, out=jgt);
+    AND(a=instruction[0], b=jlt, out=jltout);
+    AND(a=instruction[1], b=jeq, out=jeqout);
+    And(a=instruction[2], b=jgt, out=jgtout);
+    Or(a=jltout , b=jeqout, out=jleq);
+    Or(a=jleq, b=jgtout, out=jump );
+    PC(in=Areg , load=jump , inc=true , rest=reset , out[0..14]=pc[0..15], out[15]=pcout);
     // Put your code here:
 }
