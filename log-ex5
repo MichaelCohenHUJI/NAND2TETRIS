@@ -1,0 +1,24 @@
+./projects/05/ComputerAdd.tst
+Unknown command or component name: ROM32K load Add.hack 
+./projects/05/ComputerAdd-external.tst
+Unknown command or component name: ROM32K load Add.hack 
+./projects/05/ComputerMax.tst
+Unknown command or component name: ROM32K load Max.hack 
+./projects/05/ComputerMax-external.tst
+Unknown command or component name: ROM32K load Max.hack 
+./projects/05/ComputerRect.tst
+Unknown command or component name: ROM32K load Rect.hack 
+./projects/05/ComputerRect-external.tst
+Unknown command or component name: ROM32K load Rect.hack 
+./projects/05/CPU.tst
+No such built-in chip used: DRegister
+./projects/05/CPU-external.tst
+Comparison failure at line 3
+./projects/05/CpuMul.tst
+No such built-in chip used: DRegister
+./projects/05/ExtendAlu.tst
+Comparison failure at line 2
+./projects/05/Memory.tst
+Terminate batch job (Y/N)? ^CTerminate batch job (Y/N)? 
+^CTerminate batch job (Y/N)? Terminate batch job (Y/N)? 
+^C
