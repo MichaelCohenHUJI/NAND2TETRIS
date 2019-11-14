@@ -2,7 +2,7 @@
 * This chip is an extension of the book CPU by using the extended ALU.
 * More specificly if instruction[15]==0 or (instruction[14] and instruction[13] equals 1)
 * the CpuMul behave exactly as the book CPU.
-* While if it is C instruction and instruction[13] == 0 the output will be D*A/M 
+* While if it is C instruction and instruction[13] == 0 the output will be D*A/M
 * (according to instruction[12]).
 * Moreover, if it is c instruction and instruction[14] == 0 it will behave as follows:
 *
@@ -25,9 +25,47 @@ CHIP CpuMul{
                          // the current program (reset=0).
 
     OUT outM[16],        // M value output
-        writeM,          // Write into M? 
+        writeM,          // Write into M?
         addressM[15],    // Address in data memory (of M)
         pc[15];          // address of next instruction
 
      PARTS:
+
+
+         Not(in=instruction[15], out=ainstruction);
+         Not(in=ainstruction, out=cinstruction);
+
+         And(a=instruction[5], b=cinstruction, out=storeInA);
+         Mux16(a=instruction, b=outMM, sel=storeInA, out=Areg);
+
+         Or(a=ainstruction, b=storeInA, out=loadRegA);
+         ARegister(in=Areg, load=loadRegA, out=AregIns);
+
+         And(a=cinstruction, b=instruction[4], out=loadRegD);
+         DRegister(in=outMM, load=loadRegD, out=Dreg);
+
+         Mux16(a=AregIns, b=inM, sel=instruction[12], out=AMreg);
+
+         ExtendAlu( x=Dreg, y=AMreg, instruction=instruction[6..14], zr=jeq, ng=jlt,  out=outMM);
+         //Mux16(a=Areg, b=Dreg, sel=instruction[11] ,out=  )
+
+         And(a=cinstruction, b=instruction[3], out=writeM);
+         And16(a=AregIns, b=AregIns, out[0..14]=addressM, out[15]=outout);
+
+         // jumping ...
+         Not(in=jlt, out=posOrZero);
+         Not(in=jeq, out=notEqZero);
+         And(a=posOrZero, b=notEqZero, out=jgt);
+         And(a=instruction[2], b=jlt, out=jltout);
+         And(a=instruction[1], b=jeq, out=jeqout);
+         And(a=instruction[0], b=jgt, out=jgtout);
+         Or(a=jltout , b=jeqout, out=jleq);
+         Or(a=jleq, b=jgtout, out=jump );
+
+         And(a=jump, b=cinstruction, out=jumptrue);
+         Not( in=jumptrue, out=inc );
+         PC(in=AregIns , load=jumptrue , inc=inc , reset=reset , out[0..14]=pc);
+         // Put your code here:
+
+         And16(a=outMM, b=outMM, out=outM);
 }

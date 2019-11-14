@@ -41,29 +41,41 @@ CHIP CPU {
     PARTS:
 
 
-    Mux16(a=instruction, b=outMM, sel=instruction[5], out=Areg);
-    ARegister(in=Areg, load=instruction[5], out=AregIns);
-    DRegister(in=outMM, load=instruction[4], out=Dreg);
+    Not(in=instruction[15], out=ainstruction);
+    Not(in=ainstruction, out=cinstruction);
 
-    Mux16(a=inM, b=AregIns, sel=instruction[12], out=AMreg);
-    ALU( x=AMreg, y=Dreg, zx=instruction[11], nx=instruction[10],
+    And(a=instruction[5], b=cinstruction, out=storeInA);
+    Mux16(a=instruction, b=outMM, sel=storeInA, out=Areg);
+
+    Or(a=ainstruction, b=storeInA, out=loadRegA);
+    ARegister(in=Areg, load=loadRegA, out=AregIns);
+
+    And(a=cinstruction, b=instruction[4], out=loadRegD);
+    DRegister(in=outMM, load=loadRegD, out=Dreg);
+
+    Mux16(a=AregIns, b=inM, sel=instruction[12], out=AMreg);
+
+    ALU( x=Dreg, y=AMreg, zx=instruction[11], nx=instruction[10],
         zy=instruction[9], ny=instruction[8], f=instruction[7],
         no=instruction[6], zr=jeq, ng=jlt,  out=outMM);
     //Mux16(a=Areg, b=Dreg, sel=instruction[11] ,out=  )
 
-    And(a=instruction[3], b=instruction[3], out=writeM);
-    And16(a=Areg, b=Areg, out[0..14]=addressM, out[15]=outout);
+    And(a=cinstruction, b=instruction[3], out=writeM);
+    And16(a=AregIns, b=AregIns, out[0..14]=addressM, out[15]=outout);
 
     // jumping ...
     Not(in=jlt, out=posOrZero);
     Not(in=jeq, out=notEqZero);
     And(a=posOrZero, b=notEqZero, out=jgt);
-    And(a=instruction[0], b=jlt, out=jltout);
+    And(a=instruction[2], b=jlt, out=jltout);
     And(a=instruction[1], b=jeq, out=jeqout);
-    And(a=instruction[2], b=jgt, out=jgtout);
+    And(a=instruction[0], b=jgt, out=jgtout);
     Or(a=jltout , b=jeqout, out=jleq);
     Or(a=jleq, b=jgtout, out=jump );
-    PC(in=Areg , load=jump , inc=true , reset=reset , out[0..14]=pc[0..14], out[15]=pcout);
+
+    And(a=jump, b=cinstruction, out=jumptrue);
+    Not( in=jumptrue, out=inc );
+    PC(in=AregIns , load=jumptrue , inc=inc , reset=reset , out[0..14]=pc);
     // Put your code here:
 
     And16(a=outMM, b=outMM, out=outM);
