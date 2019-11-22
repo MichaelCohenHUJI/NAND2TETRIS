@@ -1,0 +1,23 @@
+davidponar, michael_cohen
+===============================================================================
+David Ponarovsky, ID 208504050, david.ponarovsky@cs.huji.ac.il
+Michael Cohen, ID 314884826, michael.cohen3@cs.huji.ac.il
+===============================================================================
+
+                           Project 6 
+                           -----------------------
+
+Submitted Files
+---------------
+README - This file.
+Computer.hdl
+CPU.hdl
+CpuMul.hdl
+Memory.hdl
+ExtendAlu.hdl
+
+Remarks
+-------
+there is not some sophisticated idea in the implementation, each circle is just
+a directly copy of the book's diagram. the Mulcpu is identical to the Cpu except
+that it using the extandALu over the standart ALU.
