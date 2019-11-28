@@ -1,0 +1,26 @@
+davidponar, michael_cohen
+===============================================================================
+David Ponarovsky, ID 208504050, david.ponarovsky@cs.huji.ac.il
+Michael Cohen, ID 314884826, michael.cohen3@cs.huji.ac.il
+===============================================================================
+
+                           Project 6
+                           -----------------------
+
+Submitted Files
+---------------
+README - This file.
+Assembler - the starter script.
+Makefile - the initialization script.
+main.py - the entry point.
+hackparser.py - the core of parsing preprocessing.
+code.py - include the tables which mapping between keyword to the
+          binary numbers which represents the instructions. and executing
+          the translation.
+
+Remarks
+-------
+there is not any sophisticated idea in the implementation, first extracting
+the codes than reformatting it to convenient form which include '$' as
+delimiters, separating the instruction to logical parts. than replacing the
+tokens by the instructions numbers.       
