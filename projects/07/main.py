@@ -1,6 +1,6 @@
 
 import sys
-# from hackparser import parse
+from vmparser import parse
 # import code
 import os
 
@@ -20,7 +20,7 @@ def outfilename( inputfile ):
     translate a single asm file to hack file.
 '''
 def translate_one_file( inputfile ):
-    hackcode = asmcode() # parse(open( inputfile, 'r' ).readlines())
+    hackcode = parse(inputfile) # parse(open( inputfile, 'r' ).readlines())
     outpath = outfilename(inputfile)
     with open( outpath , "w" ) as output :
         output.write( hackcode )
@@ -31,7 +31,7 @@ def translate_dir( dirpath, outpath ):
     with open( outpath , "w" ) as output :
         for _file in os.listdir(dirpath):
             if _file.endswith(".vm"):
-                hackcode += asmcode()
+                hackcode += parse( dirpath + "/" +  _file)
         output.write( hackcode )
         output.close()
 
