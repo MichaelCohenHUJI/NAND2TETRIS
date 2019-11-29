@@ -28,11 +28,29 @@
 '''
 
 
+def push( args ):
+    ret =   "@{0}\n" +\
+            "D=A\n" +\
+            "@SP\n" +\
+            "A=D\n" +\
+            "M=D\n" +\
+            "@SP\n" +\
+            "M=M+1".format(args[1])
+    return ret 
+
+def pop ( args ):
+    pass
+
+def add ( args ):
+    pass
+
+
+
 '''
     @fooNan - for tests.
 '''
-def fooNan ( arg):
-    return "".join(arg)
+def fooNan ( args ):
+    return "".join( args )
 
 
 
