@@ -1,1 +1,1 @@
-vm code
+asm code
