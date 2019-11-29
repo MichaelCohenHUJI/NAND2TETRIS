@@ -1,3 +1,6 @@
+
+python ./projects/07/main.py ./projects/07/DirTest/03.asm
+
 for i in ./projects/07/*/*/*.vm
 do
   echo $i
