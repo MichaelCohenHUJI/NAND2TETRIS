@@ -1,25 +1,103 @@
 
-constant 10
+@10
+D=A
+@SP
+A=D
+M=D
+@SP
+M=M+1
 local 0
-constant 21
-constant 22
+@21
+D=A
+@SP
+A=D
+M=D
+@SP
+M=M+1
+@22
+D=A
+@SP
+A=D
+M=D
+@SP
+M=M+1
 argument 2
 argument 1
-constant 36
+@36
+D=A
+@SP
+A=D
+M=D
+@SP
+M=M+1
 this 6
-constant 42
-constant 45
+@42
+D=A
+@SP
+A=D
+M=D
+@SP
+M=M+1
+@45
+D=A
+@SP
+A=D
+M=D
+@SP
+M=M+1
 that 5
 that 2
-constant 510
+@510
+D=A
+@SP
+A=D
+M=D
+@SP
+M=M+1
 temp 6
-local 0
-that 5
+@0
+D=A
+@LCL
+A=D
+M=D
+@LCL
+M=M+1
+@5
+D=A
+@THAT
+A=D
+M=D
+@THAT
+M=M+1
 
-argument 1
+@1
+D=A
+@ARG
+A=D
+M=D
+@ARG
+M=M+1
 
-this 6
-this 6
+@6
+D=A
+@THIS
+A=D
+M=D
+@THIS
+M=M+1
+@6
+D=A
+@THIS
+A=D
+M=D
+@THIS
+M=M+1
 
 
-temp 6
+@6
+D=A
+@LCL
+A=D
+M=D
+@LCL
+M=M+1

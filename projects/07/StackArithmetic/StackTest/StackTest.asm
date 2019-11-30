@@ -1,38 +1,176 @@
 
-constant 17
-constant 17
+@17
+D=A
+@SP
+A=D
+M=D
+@SP
+M=M+1
+@17
+D=A
+@SP
+A=D
+M=D
+@SP
+M=M+1
 
-constant 17
-constant 16
+@17
+D=A
+@SP
+A=D
+M=D
+@SP
+M=M+1
+@16
+D=A
+@SP
+A=D
+M=D
+@SP
+M=M+1
 
-constant 16
-constant 17
+@16
+D=A
+@SP
+A=D
+M=D
+@SP
+M=M+1
+@17
+D=A
+@SP
+A=D
+M=D
+@SP
+M=M+1
 
-constant 892
-constant 891
+@892
+D=A
+@SP
+A=D
+M=D
+@SP
+M=M+1
+@891
+D=A
+@SP
+A=D
+M=D
+@SP
+M=M+1
 
-constant 891
-constant 892
+@891
+D=A
+@SP
+A=D
+M=D
+@SP
+M=M+1
+@892
+D=A
+@SP
+A=D
+M=D
+@SP
+M=M+1
 
-constant 891
-constant 891
+@891
+D=A
+@SP
+A=D
+M=D
+@SP
+M=M+1
+@891
+D=A
+@SP
+A=D
+M=D
+@SP
+M=M+1
 
-constant 32767
-constant 32766
+@32767
+D=A
+@SP
+A=D
+M=D
+@SP
+M=M+1
+@32766
+D=A
+@SP
+A=D
+M=D
+@SP
+M=M+1
 
-constant 32766
-constant 32767
+@32766
+D=A
+@SP
+A=D
+M=D
+@SP
+M=M+1
+@32767
+D=A
+@SP
+A=D
+M=D
+@SP
+M=M+1
 
-constant 32766
-constant 32766
+@32766
+D=A
+@SP
+A=D
+M=D
+@SP
+M=M+1
+@32766
+D=A
+@SP
+A=D
+M=D
+@SP
+M=M+1
 
-constant 57
-constant 31
-constant 53
+@57
+D=A
+@SP
+A=D
+M=D
+@SP
+M=M+1
+@31
+D=A
+@SP
+A=D
+M=D
+@SP
+M=M+1
+@53
+D=A
+@SP
+A=D
+M=D
+@SP
+M=M+1
 
-constant 112
+@112
+D=A
+@SP
+A=D
+M=D
+@SP
+M=M+1
 
 
 
-constant 82
+@82
+D=A
+@SP
+A=D
+M=D
+@SP
+M=M+1
 

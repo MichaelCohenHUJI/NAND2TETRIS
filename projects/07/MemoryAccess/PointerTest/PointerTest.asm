@@ -1,15 +1,63 @@
 
-constant 3030
+@3030
+D=A
+@SP
+A=D
+M=D
+@SP
+M=M+1
 pointer 0
-constant 3040
+@3040
+D=A
+@SP
+A=D
+M=D
+@SP
+M=M+1
 pointer 1
-constant 32
+@32
+D=A
+@SP
+A=D
+M=D
+@SP
+M=M+1
 this 2
-constant 46
+@46
+D=A
+@SP
+A=D
+M=D
+@SP
+M=M+1
 that 6
-pointer 0
-pointer 1
+@0
+D=A
+@LCL
+A=D
+M=D
+@LCL
+M=M+1
+@1
+D=A
+@LCL
+A=D
+M=D
+@LCL
+M=M+1
 
-this 2
+@2
+D=A
+@THIS
+A=D
+M=D
+@THIS
+M=M+1
 
-that 6
+@6
+D=A
+@THAT
+A=D
+M=D
+@THAT
+M=M+1

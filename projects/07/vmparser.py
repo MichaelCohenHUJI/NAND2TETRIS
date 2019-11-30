@@ -27,24 +27,41 @@
         - or
 '''
 
+hists = {
+    "constant"  : '@SP'     ,
+    "local"     : '@LCL'    ,
+    "argument"  : '@ARG'    ,
+    "this"      : '@THIS'   ,
+    "that"      : '@THAT'
+}
+
+
 
 def push( args ):
+    stack ,val  = args[0].split()
+    hist = hists[stack] \
+     if stack in hists else "@LCL"
     ret =   "@{0}\n" +\
             "D=A\n" +\
-            "@SP\n" +\
+            "{1}\n" +\
             "A=D\n" +\
             "M=D\n" +\
-            "@SP\n" +\
-            "M=M+1".format(args[1])
-    return ret 
+            "{1}\n" +\
+            "M=M+1"
+    return ret.format(val, hist)
 
-def pop ( args ):
+def pop( args ):
     pass
 
-def add ( args ):
-    pass
-
-
+def add( args ):
+    ret =   "@SP\n" +\
+            "D=A\n" +\
+            "{1}\n" +\
+            "A=D\n" +\
+            "M=D\n" +\
+            "{1}\n" +\
+            "M=M+1"
+    return ret
 
 '''
     @fooNan - for tests.
@@ -55,15 +72,15 @@ def fooNan ( args ):
 
 
 operator = {
-    "push" : fooNan ,
-    "pop" : fooNan ,
-    "add" : fooNan ,
-    "sub" : fooNan ,
-    "eq" : fooNan ,
-    "lt" : fooNan ,
-    "gt" : fooNan ,
-    "neg" : fooNan ,
-    "and" : fooNan ,
+    "push" : push,
+    "pop" : fooNan,
+    "add" : fooNan,
+    "sub" : fooNan,
+    "eq" : fooNan,
+    "lt" : fooNan,
+    "gt" : fooNan,
+    "neg" : fooNan,
+    "and" : fooNan,
     "or" : fooNan,
     "not" :fooNan
 }
