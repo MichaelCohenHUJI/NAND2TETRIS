@@ -1,15 +1,15 @@
 
 @7
 D=A
-@SP
+@LCL
 A=D
 M=D
-@SP
+@LCL
 M=M+1
 @8
 D=A
-@SP
+@LCL
 A=D
 M=D
-@SP
+@LCL
 M=M+1

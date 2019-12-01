@@ -67,18 +67,17 @@ def pop( args ):
         'A=M\n' +\
         'D=M\n' +\
         '@SP\n' +\
-        'M=M-1\n'
+        'M=M-1'
     idx = find_idx(stack,val)
-    return popper, idx, '\nM=D'
+    return "\n".join([ popper, idx, 'M=D'] )
 
 def add( args ):
     ret =   "@SP\n" +\
-            "D=A\n" +\
-            "{1}\n" +\
             "A=D\n" +\
             "M=D\n" +\
-            "{1}\n" +\
-            "M=M+1"
+            "M=M-1\n" +\
+            "A=A+D\n"
+
     return ret
 
 '''
