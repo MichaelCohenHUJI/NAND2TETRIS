@@ -55,7 +55,7 @@ def push( args ):
     ret =   "@{0}\n" +\
             "D=A\n" +\
             "{1}\n" +\
-            "A=D\n" +\
+            "A=A+D\n" +\
             "M=D\n" +\
             "{1}\n" +\
             "M=M+1"
@@ -78,7 +78,7 @@ def add( args ):
             "M=M-1\n" +\
             "A=A+D\n"
 
-    return ret
+    return ""
 
 '''
     @fooNan - for tests.
@@ -156,4 +156,5 @@ def handle_spaces_and_commments(lines):
 def parse(vmfile):
     asmcode = handle_spaces_and_commments(open(vmfile,'r').readlines())
     asmcode = compile_lines(asmcode)
+    print(asmcode[0])
     return "\n".join(asmcode)

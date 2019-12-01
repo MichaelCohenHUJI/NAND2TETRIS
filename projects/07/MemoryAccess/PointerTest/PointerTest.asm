@@ -2,7 +2,7 @@
 @3030
 D=A
 @LCL
-A=D
+A=A+D
 M=D
 @LCL
 M=M+1
@@ -16,7 +16,7 @@ M=D
 @3040
 D=A
 @LCL
-A=D
+A=A+D
 M=D
 @LCL
 M=M+1
@@ -30,7 +30,7 @@ M=D
 @32
 D=A
 @LCL
-A=D
+A=A+D
 M=D
 @LCL
 M=M+1
@@ -45,7 +45,7 @@ M=D
 @46
 D=A
 @LCL
-A=D
+A=A+D
 M=D
 @LCL
 M=M+1
@@ -60,14 +60,14 @@ M=D
 @0
 D=A
 @SP
-A=D
+A=A+D
 M=D
 @SP
 M=M+1
 @1
 D=A
 @SP
-A=D
+A=A+D
 M=D
 @SP
 M=M+1
@@ -75,7 +75,7 @@ M=M+1
 @2
 D=A
 @THIS
-A=D
+A=A+D
 M=D
 @THIS
 M=M+1
@@ -83,7 +83,7 @@ M=M+1
 @6
 D=A
 @THAT
-A=D
+A=A+D
 M=D
 @THAT
 M=M+1
