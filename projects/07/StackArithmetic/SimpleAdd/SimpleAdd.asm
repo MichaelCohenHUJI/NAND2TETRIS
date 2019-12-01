@@ -6,7 +6,7 @@ A=M
 M=D
 @SP
 M=M+1
-@8
+@9
 D=A
 @SP
 A=M

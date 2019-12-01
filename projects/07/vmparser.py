@@ -1,6 +1,8 @@
 
 
-
+global debug
+debug  = True
+filename = ''
 labelcount = 0
 '''
     stack
@@ -65,7 +67,6 @@ def push( args ):
             "M=D\n" +\
             "@SP\n" +\
             "M=M+1"
-    print(stack)
     idx = find_idx(stack,val)
     if stack != 'constant':
         ret = "D=M"
@@ -111,63 +112,72 @@ def fooNan ( args ):
     return "".join( args )
 
 
+def insert(val):
+    return  "@SP\n" +\
+            "A=M\n" +\
+            "M={0}\n".format(val) #+\
+            # "@SP\n" +\
+            # "M=M+1\n"
 
-
-'''
-@EQ
-M=M-D;JEQ
-M=0
-@ENDEQ
-JMP
-(EQ)
-M=1
-(ENDEQ)
-'''
-
-def _if_else(inst, flag, code1, code2 ):
+def _if_else( precode, inst, flag, code1, code2 ):
     labelend = create_new_label()
     labelif = create_new_label()
-    ret =   "@{1}\n" +\
+    #labelse = create_new_label()
+    ret =   precode + "\n" +\
+            "@{0}\n" +\
             "{0};{1}\n".format(inst ,flag) +\
             code1 +\
-            "@{0}\n" +\
-            "JMP\n" +\
+            "@{1}\n" +\
+            "D=D;JMP\n" +\
             "({0})\n" +\
             code2 +\
             "({1})"
     return ret.format(labelif, labelend)
 
 
+def incStack():
+    return ""
+    # return "@SP" +"\n" +\
+    #         "M=M+1"
+
 def eq ( args ):
-    return twostep("") +\
-            _if_else( "M=M-D","JNE","M=0\n", "M=1\n")
-
-
+    debug_msg = "//eq\n" if debug else ""
+    return debug_msg + twostep("") +\
+            _if_else("D=M-D", "D","JEQ", insert(-1), insert(1) ) +"\n" +\
+              incStack() + "\n" + debug_msg
 def lt ( args ):
-    pass
+    return twostep("") +\
+            _if_else("D=M-D", "D","JLT", insert(-1), insert(1)) +"\n" +\
+              incStack()
 def gt ( args ):
-    pass
+    return twostep("") +\
+            _if_else("D=M-D", "D","JGT", insert(-1), insert(1)) +"\n" +\
+              incStack()
 def neg ( args ):
-    return onestep("M=-M")
+    return onestep("M=-M") +"\n" +\
+      incStack()
 def _and ( args ):
-    pass
+    return twostep("M=M&D") +"\n" +\
+      incStack()
 def _or ( args ):
-    pass
+    return twostep("M=M|D") +"\n" +\
+      incStack()
 def _not ( args ):
-    return onestep("M=!M")
+    return onestep("M=!M") +"\n" +\
+      incStack()
 
 operator = {
-    "push" : push,
-    "pop" : pop,
-    "add" : add,
-    "sub" : sub,
-    "eq" : eq,
-    "lt" : fooNan,
-    "gt" : fooNan,
-    "neg" : neg,
-    "and" : fooNan,
-    "or" : fooNan,
-    "not" : _not
+    "push" :    push,
+    "pop" :     pop,
+    "add" :     add,
+    "sub" :     sub,
+    "eq" :      eq,
+    "lt" :      lt,
+    "gt" :      gt,
+    "neg" :     neg,
+    "and" :     _and,
+    "or" :      _or,
+    "not" :     _not
 }
 
 
