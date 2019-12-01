@@ -26,6 +26,11 @@
         - or
 '''
 
+
+labelcount = 0
+
+
+
 hists = {
     "constant" : '{0}',
     "pointer"  : '@SP'     ,
@@ -46,6 +51,13 @@ def find_idx(stack,val=None):
         ret = '@'+str(val)+'\n' +\
             'A=A+'+str(stack)
         return ret
+
+
+def create_new_label():
+    global labelcount
+    ret = "label{0}".format(labelcount)
+    labelcount += 1
+    return ret
 
 
 
@@ -77,22 +89,26 @@ def pop( args ):
     return "\n".join([ popper, idx, 'M=D'] )
 
 
-def arithmetic( op ):
-    ret =   "@SP\n" +\
+def onestep ( content ):
+    return  "@SP\n" +\
+            "A=M-1\n" + content
+def twostep ( content ):
+    return  "@SP\n" +\
             "A=M-1\n" +\
             "D=M\n" +\
             "@SP\n" +\
             "M=M-1\n" +\
             "A=M-1\n" +\
-            "M=M{0}D".format(op)
-    return ret
+            content
+
+def arithmetic( op ):
+    return twostep("M=M{0}D".format(op))
 
 def add( args ):
     return arithmetic('+')
 
 def sub ( args ) :
     return arithmetic('-')
-
 
 '''
     @fooNan - for tests.
@@ -101,18 +117,63 @@ def fooNan ( args ):
     return "".join( args )
 
 
+
+
+'''
+@EQ
+M=M-D;JEQ
+M=0
+@ENDEQ
+JMP
+(EQ)
+M=1
+(ENDEQ)
+'''
+
+def _if_else(inst, flag, code1, code2 ):
+    labelend = create_new_label()
+    labelif = create_new_label()
+    ret =   "@{1}\n" +\
+            "{0};{1}\n".format(inst ,flag) +\
+            code1 +\
+            "@{0}\n" +\
+            "JMP\n" +\
+            "({0})\n" +\
+            code2 +\
+            "({1})"
+    return ret.format(labelif, labelend)
+
+
+def eq ( args ):
+    return twostep("") +\
+            _if_else( "M=M-D","JNE","M=0\n", "M=1\n")
+
+
+def lt ( args ):
+    pass
+def gt ( args ):
+    pass
+def neg ( args ):
+    return onestep("M=-M")
+def _and ( args ):
+    pass
+def _or ( args ):
+    pass
+def _not ( args ):
+    return onestep("M=!M")
+
 operator = {
     "push" : push,
     "pop" : pop,
     "add" : add,
     "sub" : sub,
-    "eq" : fooNan,
+    "eq" : eq,
     "lt" : fooNan,
     "gt" : fooNan,
-    "neg" : fooNan,
+    "neg" : neg,
     "and" : fooNan,
     "or" : fooNan,
-    "not" :fooNan
+    "not" : _not
 }
 
 
