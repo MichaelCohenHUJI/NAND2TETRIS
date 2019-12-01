@@ -1,7 +1,7 @@
 
 
 
-
+labelcount = 0
 '''
     stack
         - push
@@ -25,32 +25,29 @@
         - and
         - or
 '''
-
-
-labelcount = 0
-
-
-
-hists = {
-    "constant" : '{0}',
-    "pointer"  : '@SP'     ,
+reg_hists = {
     "local"     : '@LCL'    ,
     "argument"  : '@ARG'    ,
     "this"      : '@THIS'   ,
-    "that"      : '@THAT'
+    "that"      : '@THAT'   ,
+    'temp'      :'@5'
 }
 
-memory_range={'temp':5, 'general purpose area':13,
-'static':16, 'stack':256,} #to 2047}
+specials={'static':'@'+filename+'.', 'pointer0':'@THIS',
+          'pointer1':'@THAT',    "constant" : '@'
+}
 
 
 def find_idx(stack,val=None):
-    if stack == 'pointer':
-        return '@SP'
-    else: #@val:A=A+stack, action
-        ret = '@'+str(val)+'\n' +\
-            'A=A+'+str(stack)
-        return ret
+    if stack in reg_hists:
+        ret = reg_hists[stack] + '\n' +\
+            'A=A+' + val
+    else:
+        if stack == 'pointer':
+            ret = specials[stack+val]
+        else:
+            ret = specials[stack]+val
+    return ret
 
 
 def create_new_label():
@@ -63,28 +60,25 @@ def create_new_label():
 
 def push( args ):
     stack ,val  = args[0].split()
-
-    print(stack)
-
-    hist = hists[stack] \
-     if stack in hists else "@LCL"
-
-    ret =   "@{0}\n" +\
-            "D=A\n" +\
-            "@SP\n" +\
+    push_logic = "@SP\n" +\
             "A=M\n" +\
             "M=D\n" +\
             "@SP\n" +\
             "M=M+1"
-    return ret.format(val)
+    print(stack)
+    idx = find_idx(stack,val)
+    if stack != 'constant':
+        ret = "D=M"
+    else:
+        ret = 'D=A'
+    return "\n".join([idx, ret, push_logic] )
 
 def pop( args ):
     stack ,val  = args[0].split()
-    popper = '@SP\n' +\
+    popper = '@SP\n' + \
+        'M=M-1\n' + \
         'A=M\n' +\
-        'D=M\n' +\
-        '@SP\n' +\
-        'M=M-1'
+        'D=M\n'
     idx = find_idx(stack,val)
     return "\n".join([ popper, idx, 'M=D'] )
 
@@ -228,6 +222,8 @@ def handle_spaces_and_commments(lines):
     returns the asm code excluding the comments and the spaces
 """
 def parse(vmfile):
+    global filename
+    filename = vmfile
     asmcode = handle_spaces_and_commments(open(vmfile,'r').readlines())
     asmcode = compile_lines(asmcode)
     #print(asmcode[0])
