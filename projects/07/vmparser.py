@@ -76,17 +76,23 @@ def pop( args ):
     idx = find_idx(stack,val)
     return "\n".join([ popper, idx, 'M=D'] )
 
-def add( args ):
+
+def arithmetic( op ):
     ret =   "@SP\n" +\
             "A=M-1\n" +\
             "D=M\n" +\
             "@SP\n" +\
             "M=M-1\n" +\
             "A=M-1\n" +\
-            "M=M+D"
-
-
+            "M=M{0}D".format(op)
     return ret
+
+def add( args ):
+    return arithmetic('+')
+
+def sub ( args ) :
+    return arithmetic('-')
+
 
 '''
     @fooNan - for tests.
@@ -95,12 +101,11 @@ def fooNan ( args ):
     return "".join( args )
 
 
-
 operator = {
     "push" : push,
     "pop" : pop,
     "add" : add,
-    "sub" : fooNan,
+    "sub" : sub,
     "eq" : fooNan,
     "lt" : fooNan,
     "gt" : fooNan,
