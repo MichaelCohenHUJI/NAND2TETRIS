@@ -28,10 +28,6 @@ M=M+1
 M=M-1
 A=M
 D=M
-<<<<<<< HEAD
-
-=======
->>>>>>> ec385fb77fca36234c67e63121de5c3b7a8b8dbb
 @.8
 M=D
 //pop static3
@@ -39,10 +35,6 @@ M=D
 M=M-1
 A=M
 D=M
-<<<<<<< HEAD
-
-=======
->>>>>>> ec385fb77fca36234c67e63121de5c3b7a8b8dbb
 @.3
 M=D
 //pop static1
@@ -50,15 +42,9 @@ M=D
 M=M-1
 A=M
 D=M
-<<<<<<< HEAD
-
-@.1
-M=D
-=======
 @.1
 M=D
 //push static3
->>>>>>> ec385fb77fca36234c67e63121de5c3b7a8b8dbb
 @.3
 D=M
 @SP
@@ -66,10 +52,7 @@ A=M
 M=D
 @SP
 M=M+1
-<<<<<<< HEAD
-=======
 //push static1
->>>>>>> ec385fb77fca36234c67e63121de5c3b7a8b8dbb
 @.1
 D=M
 @SP
@@ -84,10 +67,7 @@ D=M
 M=M-1
 A=M-1
 M=M-D
-<<<<<<< HEAD
-=======
 //push static8
->>>>>>> ec385fb77fca36234c67e63121de5c3b7a8b8dbb
 @.8
 D=M
 @SP

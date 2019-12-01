@@ -149,7 +149,7 @@ def fooNan ( args ):
 
 def insert(val):
     return  "@SP\n" +\
-            "A=M\n" +\
+            "A=M-1\n" +\
             "M={0}\n".format(val) #+\
             # "@SP\n" +\
             # "M=M+1\n"
@@ -178,15 +178,15 @@ def incStack():
 def eq ( args ):
     debug_msg = "//eq\n" if debug else ""
     return debug_msg + twostep("") +\
-            _if_else("D=M-D", "D","JEQ", insert(-1), insert(1) ) +"\n" +\
+            _if_else("D=M-D", "D","JEQ", insert(0), insert(-1) ) +"\n" +\
               incStack() + "\n" + debug_msg
 def lt ( args ):
     return twostep("") +\
-            _if_else("D=M-D", "D","JLT", insert(-1), insert(1)) +"\n" +\
+            _if_else("D=M-D", "D","JLT", insert(0), insert(-1)) +"\n" +\
               incStack()
 def gt ( args ):
     return twostep("") +\
-            _if_else("D=M-D", "D","JGT", insert(-1), insert(1)) +"\n" +\
+            _if_else("D=M-D", "D","JGT", insert(0), insert(-1)) +"\n" +\
               incStack()
 def neg ( args ):
     return onestep("M=-M") +"\n" +\
