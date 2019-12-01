@@ -1,3 +1,4 @@
+//push constant17
 @17
 D=A
 @SP
@@ -5,6 +6,7 @@ A=M
 M=D
 @SP
 M=M+1
+//push constant17
 @17
 D=A
 @SP
@@ -26,6 +28,7 @@ JMP
 (label1)
 M=1
 (label0)
+//push constant17
 @17
 D=A
 @SP
@@ -33,6 +36,7 @@ A=M
 M=D
 @SP
 M=M+1
+//push constant16
 @16
 D=A
 @SP
@@ -54,6 +58,7 @@ JMP
 (label3)
 M=1
 (label2)
+//push constant16
 @16
 D=A
 @SP
@@ -61,6 +66,7 @@ A=M
 M=D
 @SP
 M=M+1
+//push constant17
 @17
 D=A
 @SP
@@ -82,6 +88,7 @@ JMP
 (label5)
 M=1
 (label4)
+//push constant892
 @892
 D=A
 @SP
@@ -89,6 +96,7 @@ A=M
 M=D
 @SP
 M=M+1
+//push constant891
 @891
 D=A
 @SP

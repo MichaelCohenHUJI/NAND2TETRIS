@@ -1,6 +1,6 @@
 
 
-
+filename = ''
 labelcount = 0
 '''
     stack
@@ -37,11 +37,33 @@ specials={'static':'@'+filename+'.', 'pointer0':'@THIS',
           'pointer1':'@THAT',    "constant" : '@'
 }
 
+numbers_mapping = {"local"     : '@LCL'    ,
+    "argument"  : '@ARG'    ,
+    "this"      : '@THIS'   ,
+    "that"      : '@THAT'   ,
+    'temp'      : 5,
+    'static':'@'+filename+'.',
+    'pointer0':'@THIS',
+    'pointer1':'@THAT',
+    "constant" : '@'}
 
 def find_idx(stack,val=None):
     if stack in reg_hists:
-        ret = reg_hists[stack] + '\n' +\
-            'A=A+' + val
+        if stack != 'temp':
+            ret = '@'+val + '\n' +\
+                'D=A\n'          +\
+                reg_hists[stack]+'\n' +\
+                'A=M\n'          +\
+                'D=A+D\n' +\
+                '@R13\n'+\
+                'M=D'
+        else:
+            ret = '@' + val + '\n' + \
+                  'D=A\n' + \
+                  reg_hists[stack] + '\n' + \
+                  'D=D+A\n' +\
+                  '@R13\n' +\
+                  'M=D'
     else:
         if stack == 'pointer':
             ret = specials[stack+val]
@@ -60,27 +82,39 @@ def create_new_label():
 
 def push( args ):
     stack ,val  = args[0].split()
+    printed = '//push '+stack+val
     push_logic = "@SP\n" +\
             "A=M\n" +\
             "M=D\n" +\
             "@SP\n" +\
             "M=M+1"
-    print(stack)
     idx = find_idx(stack,val)
-    if stack != 'constant':
-        ret = "D=M"
-    else:
+    if stack in reg_hists:
+        ret = '@R13\n'+\
+            'A=M\n' +\
+            "D=M"
+    elif stack == 'constant':
         ret = 'D=A'
-    return "\n".join([idx, ret, push_logic] )
+    else:
+        ret = 'D=M'
+    return "\n".join([printed, idx, ret, push_logic] )
 
 def pop( args ):
     stack ,val  = args[0].split()
+    printed = '//pop '+stack+val
     popper = '@SP\n' + \
         'M=M-1\n' + \
         'A=M\n' +\
-        'D=M\n'
+        'D=M'
     idx = find_idx(stack,val)
-    return "\n".join([ popper, idx, 'M=D'] )
+    if stack in reg_hists:
+        ret = '@R13\n' + \
+              'A=M\n' + \
+              "M=D"
+        return "\n".join([printed, idx, popper, ret])
+    else:
+        ret = 'M=D'
+    return "\n".join([printed, popper, idx, ret] )
 
 
 def onestep ( content ):
