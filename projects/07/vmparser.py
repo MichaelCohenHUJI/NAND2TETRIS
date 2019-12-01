@@ -2,7 +2,6 @@
 
 
 
-
 '''
     stack
         - push
@@ -28,12 +27,24 @@
 '''
 
 hists = {
-    "constant"  : '@SP'     ,
+    "pointer"  : '@SP'     ,
     "local"     : '@LCL'    ,
     "argument"  : '@ARG'    ,
     "this"      : '@THIS'   ,
     "that"      : '@THAT'
 }
+
+memory_range={'temp':5, 'general purpose area':13,
+'static':16, 'stack':256,} #to 2047}
+
+
+def find_idx(stack,val=None):
+    if stack == 'pointer':
+        return '@SP'
+    else: #@val:A=A+stack, action
+        ret = '@'+str(val)+'\n' +\
+            'A=A+'+str(stack)
+        return ret
 
 
 
@@ -51,7 +62,14 @@ def push( args ):
     return ret.format(val, hist)
 
 def pop( args ):
-    pass
+    stack ,val  = args[0].split()
+    popper = '@SP\n' +\
+        'A=M\n' +\
+        'D=M\n' +\
+        '@SP\n' +\
+        'M=M-1\n'
+    idx = find_idx(stack,val)
+    return popper, idx, '\nM=D'
 
 def add( args ):
     ret =   "@SP\n" +\
@@ -73,7 +91,7 @@ def fooNan ( args ):
 
 operator = {
     "push" : push,
-    "pop" : fooNan,
+    "pop" : pop,
     "add" : fooNan,
     "sub" : fooNan,
     "eq" : fooNan,
