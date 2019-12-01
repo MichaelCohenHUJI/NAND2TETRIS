@@ -27,6 +27,7 @@
 '''
 
 hists = {
+    "constant" : '{0}',
     "pointer"  : '@SP'     ,
     "local"     : '@LCL'    ,
     "argument"  : '@ARG'    ,
@@ -50,16 +51,20 @@ def find_idx(stack,val=None):
 
 def push( args ):
     stack ,val  = args[0].split()
+
+    print(stack)
+
     hist = hists[stack] \
      if stack in hists else "@LCL"
+
     ret =   "@{0}\n" +\
             "D=A\n" +\
-            "{1}\n" +\
-            "A=A+D\n" +\
+            "@SP\n" +\
+            "A=M\n" +\
             "M=D\n" +\
-            "{1}\n" +\
+            "@SP\n" +\
             "M=M+1"
-    return ret.format(val, hist)
+    return ret.format(val)
 
 def pop( args ):
     stack ,val  = args[0].split()
@@ -73,12 +78,15 @@ def pop( args ):
 
 def add( args ):
     ret =   "@SP\n" +\
-            "A=D\n" +\
-            "M=D\n" +\
+            "A=M-1\n" +\
+            "D=M\n" +\
+            "@SP\n" +\
             "M=M-1\n" +\
-            "A=A+D\n"
+            "A=M-1\n" +\
+            "M=M+D"
 
-    return ""
+
+    return ret
 
 '''
     @fooNan - for tests.
@@ -91,7 +99,7 @@ def fooNan ( args ):
 operator = {
     "push" : push,
     "pop" : pop,
-    "add" : fooNan,
+    "add" : add,
     "sub" : fooNan,
     "eq" : fooNan,
     "lt" : fooNan,
@@ -156,5 +164,5 @@ def handle_spaces_and_commments(lines):
 def parse(vmfile):
     asmcode = handle_spaces_and_commments(open(vmfile,'r').readlines())
     asmcode = compile_lines(asmcode)
-    print(asmcode[0])
+    #print(asmcode[0])
     return "\n".join(asmcode)
