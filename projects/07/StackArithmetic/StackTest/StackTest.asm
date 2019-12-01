@@ -1,4 +1,5 @@
 
+//push constant17
 @17
 D=A
 @SP
@@ -6,6 +7,7 @@ A=M
 M=D
 @SP
 M=M+1
+//push constant17
 @17
 D=A
 @SP
@@ -33,9 +35,13 @@ D=D;JMP
 A=M
 M=1
 (label0)
+<<<<<<< HEAD
 
 //eq
 
+=======
+//push constant17
+>>>>>>> ec385fb77fca36234c67e63121de5c3b7a8b8dbb
 @17
 D=A
 @SP
@@ -43,6 +49,7 @@ A=M
 M=D
 @SP
 M=M+1
+//push constant16
 @16
 D=A
 @SP
@@ -70,9 +77,13 @@ D=D;JMP
 A=M
 M=1
 (label2)
+<<<<<<< HEAD
 
 //eq
 
+=======
+//push constant16
+>>>>>>> ec385fb77fca36234c67e63121de5c3b7a8b8dbb
 @16
 D=A
 @SP
@@ -80,6 +91,7 @@ A=M
 M=D
 @SP
 M=M+1
+//push constant17
 @17
 D=A
 @SP
@@ -107,9 +119,13 @@ D=D;JMP
 A=M
 M=1
 (label4)
+<<<<<<< HEAD
 
 //eq
 
+=======
+//push constant892
+>>>>>>> ec385fb77fca36234c67e63121de5c3b7a8b8dbb
 @892
 D=A
 @SP
@@ -117,6 +133,7 @@ A=M
 M=D
 @SP
 M=M+1
+//push constant891
 @891
 D=A
 @SP
@@ -144,6 +161,7 @@ A=M
 M=1
 (label6)
 
+//push constant891
 @891
 D=A
 @SP
@@ -151,6 +169,7 @@ A=M
 M=D
 @SP
 M=M+1
+//push constant892
 @892
 D=A
 @SP
@@ -178,6 +197,7 @@ A=M
 M=1
 (label8)
 
+//push constant891
 @891
 D=A
 @SP
@@ -185,6 +205,7 @@ A=M
 M=D
 @SP
 M=M+1
+//push constant891
 @891
 D=A
 @SP
@@ -212,6 +233,7 @@ A=M
 M=1
 (label10)
 
+//push constant32767
 @32767
 D=A
 @SP
@@ -219,6 +241,7 @@ A=M
 M=D
 @SP
 M=M+1
+//push constant32766
 @32766
 D=A
 @SP
@@ -246,6 +269,7 @@ A=M
 M=1
 (label12)
 
+//push constant32766
 @32766
 D=A
 @SP
@@ -253,6 +277,7 @@ A=M
 M=D
 @SP
 M=M+1
+//push constant32767
 @32767
 D=A
 @SP
@@ -280,6 +305,7 @@ A=M
 M=1
 (label14)
 
+//push constant32766
 @32766
 D=A
 @SP
@@ -287,6 +313,7 @@ A=M
 M=D
 @SP
 M=M+1
+//push constant32766
 @32766
 D=A
 @SP
@@ -314,6 +341,7 @@ A=M
 M=1
 (label16)
 
+//push constant57
 @57
 D=A
 @SP
@@ -321,6 +349,7 @@ A=M
 M=D
 @SP
 M=M+1
+//push constant31
 @31
 D=A
 @SP
@@ -328,6 +357,7 @@ A=M
 M=D
 @SP
 M=M+1
+//push constant53
 @53
 D=A
 @SP
@@ -342,6 +372,7 @@ D=M
 M=M-1
 A=M-1
 M=M+D
+//push constant112
 @112
 D=A
 @SP
@@ -360,6 +391,7 @@ M=M-D
 A=M-1
 M=-M
 
+<<<<<<< HEAD
 @SP
 A=M-1
 D=M
@@ -368,6 +400,9 @@ M=M-1
 A=M-1
 M=M&D
 
+=======
+//push constant82
+>>>>>>> ec385fb77fca36234c67e63121de5c3b7a8b8dbb
 @82
 D=A
 @SP
