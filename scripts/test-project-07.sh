@@ -1,5 +1,5 @@
 
-python ./projects/07/main.py ./projects/07/DirTest/03.asm
+python ./projects/07/main.py ./projects/07/DirTest
 
 for i in ./projects/07/*/*/*.vm
 do

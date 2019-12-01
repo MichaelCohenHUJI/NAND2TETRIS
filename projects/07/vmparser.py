@@ -150,14 +150,11 @@ def fooNan ( args ):
 def insert(val):
     return  "@SP\n" +\
             "A=M-1\n" +\
-            "M={0}\n".format(val) #+\
-            # "@SP\n" +\
-            # "M=M+1\n"
+            "M={0}\n".format(val)
 
 def _if_else( precode, inst, flag, code1, code2 ):
     labelend = create_new_label()
     labelif = create_new_label()
-    #labelse = create_new_label()
     ret =   precode + "\n" +\
             "@{0}\n" +\
             "{0};{1}\n".format(inst ,flag) +\
@@ -188,6 +185,7 @@ def gt ( args ):
     return twostep("") +\
             _if_else("D=M-D", "D","JGT", insert(0), insert(-1)) +"\n" +\
               incStack()
+
 def neg ( args ):
     return onestep("M=-M") +"\n" +\
       incStack()

@@ -40,9 +40,9 @@ def translate_dir( dirpath, outpath ):
 if __name__ == '__main__':
     if ( len(sys.argv) > 1 ):
         inputpath = sys.argv[1]
-        if inputpath.endswith("asm") :
-            dirpath = inputpath.rsplit(sep='/', maxsplit=1)[0]
-            outpath = inputpath
-            translate_dir(dirpath , outpath)
+        if os.path.isdir(inputpath):
+            dirname = inputpath.rsplit(sep='/', maxsplit=1)[-1]
+            outpath = inputpath + "/" + dirname +".asm"
+            translate_dir(inputpath , outpath)
         elif os.path.isfile( inputpath ):
             translate_one_file( inputpath )
