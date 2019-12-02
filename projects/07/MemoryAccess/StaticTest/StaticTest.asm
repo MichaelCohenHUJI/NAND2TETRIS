@@ -3,26 +3,23 @@
 @111
 D=A
 @SP
-A=M
-M=D
-@SP
 M=M+1
+A=M-1
+M=D
 //push constant333
 @333
 D=A
 @SP
-A=M
-M=D
-@SP
 M=M+1
+A=M-1
+M=D
 //push constant888
 @888
 D=A
 @SP
-A=M
-M=D
-@SP
 M=M+1
+A=M-1
+M=D
 //pop static8
 @SP
 M=M-1
@@ -48,18 +45,16 @@ M=D
 @.3
 D=M
 @SP
-A=M
-M=D
-@SP
 M=M+1
+A=M-1
+M=D
 //push static1
 @.1
 D=M
 @SP
-A=M
-M=D
-@SP
 M=M+1
+A=M-1
+M=D
 @SP
 A=M-1
 D=M
@@ -71,10 +66,9 @@ M=M-D
 @.8
 D=M
 @SP
-A=M
-M=D
-@SP
 M=M+1
+A=M-1
+M=D
 @SP
 A=M-1
 D=M
