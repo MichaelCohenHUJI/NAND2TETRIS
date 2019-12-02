@@ -4,29 +4,7 @@ global debug
 debug  = True
 filename = ''
 labelcount = 0
-'''
-    stack
-        - push
-        - pop
 
-'''
-
-'''
-    arithmetic
-        - add
-        - sub
-
-'''
-
-'''
-    logic
-        - eq
-        - lt
-        - gt
-        - neg
-        - and
-        - or
-'''
 reg_hists = {
     "local"     : '@LCL'    ,
     "argument"  : '@ARG'    ,
@@ -152,6 +130,69 @@ def insert(val):
             "A=M-1\n" +\
             "M={0}\n".format(val)
 
+
+def preprocessing():
+
+    label_D_pos_M_neg_1 = create_new_label()
+    label_D_pos_M_neg_2 = create_new_label()
+    label_D_neg_M_pos_1 = create_new_label()
+    label_D_neg_M_pos_2 = create_new_label()
+    label_end           = create_new_label()
+
+    ret=    "@{0}\n"                    +\
+            "D;JGT\n"                   +\
+            "@{2}\n"                    +\
+            "M;JGT\n"                   +\
+            "({0})\n"                   +\
+            "@{1}\n"                    +\
+            "M;JLT\n"                   +\
+            "@{3}\n"                    +\
+            ";JMP\n"                    +\
+            "({1})\n"                   +\
+            "D=1\n"                     +\
+            insert(-1)                  +\
+            "@{3}\n"                      +\
+            ";JMP\n"                      +\
+            "({2})\n"                     +\
+            "@{3}\n"                      +\
+            "D;JLT\n"                     +\
+            "@{3}\n"                      +\
+            ";JMP\n"                      +\
+            "({3})\n"                     +\
+            "D=-1\n"                      +\
+            insert(1)                   +\
+            "({3})\n"                     +\
+            "D=M-D\n"
+
+    return ret.format(label_D_pos_M_neg_1,
+                label_D_pos_M_neg_2,
+                label_D_neg_M_pos_1,
+                label_D_neg_M_pos_2,
+                label_end)
+"""
+
+
+
+
+"""
+'''
+....
+    @SP
+    D=
+    @R13
+    M=D
+    @R14
+    M=D
+    @SP
+    M=M
+    @diff_sgn
+    D=M&D;JEQ
+    (diff_sgn)
+    @R13
+    M;JGT
+    D=
+'''
+
 def _if_else( precode, inst, flag, code1, code2 ):
     labelend = create_new_label()
     labelif = create_new_label()
@@ -169,21 +210,19 @@ def _if_else( precode, inst, flag, code1, code2 ):
 
 def incStack():
     return ""
-    # return "@SP" +"\n" +\
-    #         "M=M+1"
 
 def eq ( args ):
     debug_msg = "//eq\n" if debug else ""
     return debug_msg + twostep("") +\
-            _if_else("D=M-D", "D","JEQ", insert(0), insert(-1) ) +"\n" +\
+            _if_else(preprocessing(), "D","JEQ", insert(0), insert(-1) ) +"\n" +\
               incStack() + "\n" + debug_msg
 def lt ( args ):
     return twostep("") +\
-            _if_else("D=M-D", "D","JLT", insert(0), insert(-1)) +"\n" +\
+            _if_else(preprocessing(), "D","JLT", insert(0), insert(-1)) +"\n" +\
               incStack()
 def gt ( args ):
     return twostep("") +\
-            _if_else("D=M-D", "D","JGT", insert(0), insert(-1)) +"\n" +\
+            _if_else(preprocessing(), "D","JGT", insert(0), insert(-1)) +"\n" +\
               incStack()
 
 def neg ( args ):
