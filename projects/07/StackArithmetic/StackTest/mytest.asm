@@ -2,18 +2,16 @@
 @17
 D=A
 @SP
-A=M
-M=D
-@SP
 M=M+1
+A=M-1
+M=D
 //push constant17
 @17
 D=A
 @SP
-A=M
-M=D
-@SP
 M=M+1
+A=M-1
+M=D
 //eq
 @SP
 A=M-1
@@ -22,12 +20,12 @@ D=M
 M=M-1
 A=M-1
 @label0
-;D;JGT
+D;JGT
 @label2
-;M;JGT
+M;JGT
 (label0)
 @label1
-;M;JLT
+M;JLT
 @label3
 ;JMP
 (label1)
@@ -39,7 +37,7 @@ M=-1
 ;JMP
 (label2)
 @label3
-;D;JLT
+D;JLT
 @label3
 ;JMP
 (label3)
