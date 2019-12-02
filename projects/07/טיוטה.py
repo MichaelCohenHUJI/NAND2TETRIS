@@ -45,3 +45,61 @@ def push( args ):
     else:
         ret = 'D=M'
     return "\n".join([printed, idx, ret, push_logic] )
+
+'''
+@R13
+M=0
+@R14
+M=0
+@SP
+M=M-1
+A=M
+D=M
+@YLT
+D;JLT
+@YGT
+D;JGT
+(CONTINUE)
+@SP
+M=M-1
+A=M
+D=M
+@XLT
+D;JLT
+@XGT
+D;JGT
+(CONTINUE2)
+
+
+(YLT)
+@R13
+M=-1
+@CONTINUE
+0;JMP
+
+(YGT)
+@R13
+M=1
+@CONTINUE
+0;JMP
+
+(XLT)
+@R14
+M=-1
+@CONTINUE2
+0;JMP
+
+(XGT)
+@R14
+M=1
+@CONTINUE2
+0;JMP
+
+
+'''
+# for lt, if R14-R13<0 return true
+# else, do naive lt
+# for gt, if R14-R13>0 return false
+# else, do naive gt
+# for eq, if R14-R13=0 do naive eq (by substraction)
+# else return false
