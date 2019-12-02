@@ -130,45 +130,66 @@ def insert(val):
             "A=M-1\n" +\
             "M={0}\n".format(val)
 
-
 def preprocessing():
 
     label_D_pos_M_neg_1 = create_new_label()
     label_D_pos_M_neg_2 = create_new_label()
     label_D_neg_M_pos_1 = create_new_label()
     label_D_neg_M_pos_2 = create_new_label()
-    label_end           = create_new_label()
+    label_end_1         = create_new_label()
+    label_end_2         = create_new_label()
 
-    ret=    "@{0}\n"                    +\
+    def store_reg(reg13, reg14):
+        return  "@13\n"                      +\
+                "M={0}\n".format(reg13)       +\
+                "@14\n"                      +\
+                "M={0}\n".format(reg14)
+
+    ret=    "@13\n"                    +\
+            "M=D\n"                     +\
+            twostep('')                 +\
+            "D=M\n"                     +\
+            "@14\n"                    +\
+            "M=D\n"                     +\
+            twostep('')                 +\
+            "@{0}\n"                    +\
             "D;JGT\n"                   +\
+            twostep('')                 +\
+            "D=M\n"                     +\
             "@{2}\n"                    +\
-            "M;JGT\n"                   +\
+            "D;JGT\n"                   +\
             "({0})\n"                   +\
+            "D=M\n"                     +\
             "@{1}\n"                    +\
-            "M;JLT\n"                   +\
-            "@{3}\n"                    +\
-            ";JMP\n"                    +\
+            "D;JLT\n"                   +\
+            "@{4}\n"                    +\
+            "0;JMP\n"                   +\
             "({1})\n"                   +\
-            "D=1\n"                     +\
-            insert(-1)                  +\
-            "@{3}\n"                      +\
-            ";JMP\n"                      +\
-            "({2})\n"                     +\
-            "@{3}\n"                      +\
-            "D;JLT\n"                     +\
-            "@{3}\n"                      +\
-            ";JMP\n"                      +\
-            "({3})\n"                     +\
-            "D=-1\n"                      +\
-            insert(1)                   +\
-            "({3})\n"                     +\
-            "D=M-D\n"
+            store_reg("1", "-1")        +\
+            "@{5}\n"                    +\
+            "0;JMP\n"                   +\
+            "({2})\n"                   +\
+            "@{3}\n"                    +\
+            "D;JLT\n"                   +\
+            "@{4}\n"                    +\
+            "0;JMP\n"                   +\
+            "({3})\n"                   +\
+            store_reg("-1", "1")        +\
+            "@{5}\n"                    +\
+            "0;JMP\n"                   +\
+            "({4})\n"                   +\
+            twostep('')                 +\
+            "({5})\n"                   +\
+            "@13\n"                    +\
+            "D=M\n"                     +\
+            "@14\n"                    +\
+            "D=M-D"
 
     return ret.format(label_D_pos_M_neg_1,
                 label_D_pos_M_neg_2,
                 label_D_neg_M_pos_1,
                 label_D_neg_M_pos_2,
-                label_end)
+                label_end_1, label_end_2)
 """
 
 
