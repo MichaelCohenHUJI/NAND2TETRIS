@@ -18,8 +18,8 @@
 # need to be run before this rule) and commands that are run one after the other. The "all" rule is what
 # runs when you call "make":
 all:
-	chmod a+x Assembler
-	chmod a+x ./asmsrc
+	chmod a+x VMtranslator
+	chmod a+x ./main.py
 
 
 # As you can see, all it does is grant execution permissions for your run time executable, so your project
