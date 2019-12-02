@@ -1,33 +1,19 @@
 
-
-//push constant0
-@0
+//push constant17
+@17
 D=A
 @SP
 M=M+1
 A=M-1
 M=D
-//push constant32767
-@32767
+//push constant17
+@17
 D=A
 @SP
 M=M+1
 A=M-1
 M=D
-@SP
-A=M-1
-D=M
-@SP
-M=M-1
-A=M-1
-M=M-D
-//push constant2
-@2
-D=A
-@SP
-M=M+1
-A=M-1
-M=D
+//eq
 @SP
 A=M-1
 D=M
@@ -36,7 +22,7 @@ M=M-1
 A=M-1
 D=M-D
 @label7
-D;JLT
+D;JEQ
 @SP
 A=M-1
 M=0
@@ -48,35 +34,22 @@ A=M-1
 M=-1
 (label6)
 
+//eq
 
-//push constant2
-@2
+//push constant892
+@892
 D=A
 @SP
 M=M+1
 A=M-1
 M=D
-//push constant0
-@0
+//push constant891
+@891
 D=A
 @SP
 M=M+1
 A=M-1
 M=D
-//push constant32767
-@32767
-D=A
-@SP
-M=M+1
-A=M-1
-M=D
-@SP
-A=M-1
-D=M
-@SP
-M=M-1
-A=M-1
-M=M-D
 @SP
 A=M-1
 D=M
@@ -97,14 +70,6 @@ A=M-1
 M=-1
 (label14)
 
-
-//push constant0
-@0
-D=A
-@SP
-M=M+1
-A=M-1
-M=D
 //push constant32767
 @32767
 D=A
@@ -112,15 +77,8 @@ D=A
 M=M+1
 A=M-1
 M=D
-@SP
-A=M-1
-D=M
-@SP
-M=M-1
-A=M-1
-M=M-D
-//push constant2
-@2
+//push constant32766
+@32766
 D=A
 @SP
 M=M+1
@@ -146,23 +104,36 @@ A=M-1
 M=-1
 (label22)
 
-
-//push constant2
-@2
+//push constant56
+@56
 D=A
 @SP
 M=M+1
 A=M-1
 M=D
-//push constant0
-@0
+//push constant31
+@31
 D=A
 @SP
 M=M+1
 A=M-1
 M=D
-//push constant32767
-@32767
+//push constant53
+@53
+D=A
+@SP
+M=M+1
+A=M-1
+M=D
+@SP
+A=M-1
+D=M
+@SP
+M=M-1
+A=M-1
+M=M+D
+//push constant112
+@112
 D=A
 @SP
 M=M+1
@@ -177,20 +148,28 @@ A=M-1
 M=M-D
 @SP
 A=M-1
+M=-M
+
+@SP
+A=M-1
 D=M
 @SP
 M=M-1
 A=M-1
-D=M-D
-@label31
-D;JGT
+M=M&D
+
+//push constant82
+@82
+D=A
+@SP
+M=M+1
+A=M-1
+M=D
 @SP
 A=M-1
-M=0
-@label30
-D=D;JMP
-(label31)
+D=M
 @SP
+M=M-1
 A=M-1
-M=-1
-(label30)
+M=M|D
+
