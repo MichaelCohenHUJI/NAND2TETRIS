@@ -103,3 +103,28 @@ M=1
 # else, do naive gt
 # for eq, if R14-R13=0 do naive eq (by substraction)
 # else return false
+
+'''
+@SP
+M=M-1
+A=M
+D=M
+A=A-1
+D=D&M
+@R13
+M=D
+@SP
+M=M-1
+A=M+1
+A=M
+D=!M
+A=A-1
+M=!M
+D=D&M
+@R14
+M=D
+
+'''
+# R13orR14>0 - use naive
+# else if Y<0 lt = false, gt = true
+# else if Y>=0 lt = true, gt=false
