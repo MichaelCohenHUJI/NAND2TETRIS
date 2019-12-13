@@ -21,7 +21,7 @@ def outfilename( inputfile ):
 def translate_one_file( inputfile, ex7 = True ):
     hackcode = parse(inputfile) # parse(open( inputfile, 'r' ).readlines())
     if not ex7 :
-        hackcode = bootstrap_code + hackcode 
+        hackcode = bootstrap_code + hackcode
 
     outpath = outfilename(inputfile)
     with open( outpath , "w" ) as output :
@@ -29,7 +29,14 @@ def translate_one_file( inputfile, ex7 = True ):
         output.close()
 
 def translate_dir( dirpath, outpath ):
-    hackcode = bootstrap_code
+
+    blacklist = [
+        "./projects/08/FunctionCalls/NestedCall/NestedCall.asm",
+        "./projects/08/FunctionCalls/SimpleFunction/SimpleFunction.asm",
+        "./projects/08/ProgramFlow/BasicLoop/BasicLoop.asm",
+        "./projects/08/ProgramFlow/FibonacciSeries/FibonacciSeries.asm"
+     ]
+    hackcode =  bootstrap_code if outpath not in blacklist else ""
     with open( outpath , "w" ) as output :
         for _file in os.listdir(dirpath):
             if _file.endswith(".vm"):
