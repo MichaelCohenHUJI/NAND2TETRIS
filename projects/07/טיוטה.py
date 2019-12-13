@@ -104,7 +104,7 @@ M=1
 # for eq, if R14-R13=0 do naive eq (by substraction)
 # else return false
 
-'''
+glob_logic = '''
 @SP
 M=M-1
 A=M
@@ -123,8 +123,29 @@ M=!M
 D=D&M
 @R14
 M=D
+@R15
+M=D
+@R13
+D=M
+@R15
+M=D|M'''
 
+bool_logic = '''
+(TRUE)
+@SP
+A=M
+M=-1
+@CONTINUE
+0;JMP
+
+(FALSE)
+@SP
+A=M
+M=0
+@CONTINUE
+0;JMP
+(CONTINUE)
 '''
-# R13orR14>0 - use naive
+# R13orR14<0 - use naive
 # else if Y<0 lt = false, gt = true
 # else if Y>=0 lt = true, gt=false

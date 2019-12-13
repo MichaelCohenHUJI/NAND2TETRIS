@@ -1,10 +1,10 @@
 
 import sys
-from vmparser import parse
+from vmparser import parse, call
 # import code
 import os
 
-
+bootstrap_code ='@256\n'+'D=A\n' +'@SP\n'+'M=D\n'+call(['Sys.init'])+'\n'
 
 def asmcode():
     return "asm code"
@@ -20,14 +20,14 @@ def outfilename( inputfile ):
     translate a single asm file to hack file.
 '''
 def translate_one_file( inputfile ):
-    hackcode = parse(inputfile) # parse(open( inputfile, 'r' ).readlines())
+    hackcode = bootstrap_code+parse(inputfile) # parse(open( inputfile, 'r' ).readlines())
     outpath = outfilename(inputfile)
     with open( outpath , "w" ) as output :
         output.write( hackcode )
         output.close()
 
 def translate_dir( dirpath, outpath ):
-    hackcode = ""
+    hackcode = bootstrap_code
     with open( outpath , "w" ) as output :
         for _file in os.listdir(dirpath):
             if _file.endswith(".vm"):
@@ -42,7 +42,7 @@ if __name__ == '__main__':
         inputpath = sys.argv[1]
         if os.path.isdir(inputpath):
             dirname = inputpath.rsplit(sep='/', maxsplit=1)[-1]
-            outpath = inputpath + "/" + dirname +".asm"
+            outpath = inputpath + "/" + dirname +"StaticsTest.asm"
             translate_dir(inputpath , outpath)
         elif os.path.isfile( inputpath ):
             translate_one_file( inputpath )

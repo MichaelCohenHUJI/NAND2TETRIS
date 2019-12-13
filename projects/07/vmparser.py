@@ -4,6 +4,146 @@ debug  = True
 filename = ''
 labelcount = 0
 
+pop_logic = '@SP\n' + \
+        'M=M-1\n' + \
+        'A=M\n' +\
+        'D=M'
+
+push_logic = "@SP\n" + \
+                 "M=M+1\n" + \
+                 "A=M-1\n" + \
+                 "M=D"
+
+glob_logic = '''
+@SP
+M=M-1
+A=M
+D=M
+A=A-1
+D=D&M
+@R13
+M=D
+@SP
+M=M-1
+A=M+1
+A=M
+D=!M
+A=A-1
+M=!M
+D=D&M
+@R14
+M=D
+@R15
+M=D
+@R13
+D=M
+@R15
+M=D|M'''
+
+bool_logic = '''
+(TRUE)
+@SP
+A=M
+M=-1
+@CONTINUE
+0;JMP
+
+(FALSE)
+@SP
+A=M
+M=0
+@CONTINUE
+0;JMP
+(CONTINUE)
+'''
+
+eq_logic = '''
+@R15
+D=M
+@FALSE
+D;JGE
+@SP
+A=M
+D=M
+A=A+1
+D=M-D
+@TRUE
+D;JEQ
+@FALSE
+0;JMP
+'''
+
+lt_logic = '''
+@R15
+D=M
+@NAIVE
+D;JLT
+@SP
+A=M+1
+D=M
+@FALSE
+D;JLT
+@TRUE
+0;JMP
+(NAIVE)
+@SP
+A=M
+D=M
+A=A+1
+D=D-M
+@TRUE
+D;JLT
+@FALSE
+0;JMP
+'''
+
+gt_logic ='''
+@R15
+D=M
+@NAIVE
+D;JLT
+@SP
+A=M+1
+D=M
+@TRUE
+D;JLT
+@FALSE
+0;JMP
+(NAIVE)
+@SP
+A=M
+D=M
+A=A+1
+D=D-M
+@TRUE
+D;JGT
+@FALSE
+0;JMP
+'''
+
+comp_logic = '''
+@SP
+M=M-1
+A=M
+D=M
+A=A-1
+D=D&M
+@R13
+M=D
+@SP
+M=M-1
+A=M+1
+A=M
+D=!M
+A=A-1
+M=!M
+D=D&M
+@R14
+M=D
+'''
+
+times_called ={}
+
 reg_hists = {
     "local"     : '@LCL'    ,
     "argument"  : '@ARG'    ,
@@ -79,6 +219,107 @@ def pop( args ):
         ret = 'M=D'
     return "\n".join([printed, popper, idx, ret] )
 
+def label(args):
+    return "("+args[0]+")"
+
+def goto(args):
+    return "@"+args[0]+'\n'\
+            "0;JMP"
+
+def if_goto(args):
+    popandcheck = '@SP\n' + \
+             'M=M-1\n' + \
+             'A=M\n' + \
+             'D=M\n' +\
+            '@'+args[0]+'\n'+\
+            'D;JNE'
+    return popandcheck
+
+def call(args):
+    args_lst = args[0].split()
+    if len(args_lst)>1:
+        func, nargs = args[0].split()
+    else:
+        func, nargs = args[0].split()[0], '0'
+    if func not in times_called:
+        times_called[func]=1
+    retadd = func+'$ret'+'.'+str(times_called[func])
+    call_synt = '@'+retadd+'\n' +\
+                'D=A\n' +\
+                push_logic+'\n' +\
+                '@LCL\n' +\
+                'D=M\n' +\
+                push_logic+'\n' +\
+                '@ARG\n' + \
+                'D=M\n' + \
+                push_logic+'\n' +\
+                '@THIS\n' + \
+                'D=M\n' + \
+                push_logic + '\n' +\
+                '@THAT\n'+ \
+                'D=M\n' + \
+                push_logic + '\n' +\
+                '@5\n'+\
+                'D=A\n'+\
+                '@'+nargs+'\n' +\
+                'D=D+A\n' +\
+                '@SP\n' +\
+                'D=M-D\n'+\
+                '@ARG\n'+\
+                'M=D\n' +\
+                '@SP\n' +\
+                'D=M\n' +\
+                '@LCL\n' +\
+                'M=D\n' +\
+                goto([func])+'\n' +\
+                '('+retadd+')'
+    times_called[func] += 1
+    return call_synt
+        # push_logic = "@SP\n" + \
+    #              "M=M+1\n" + \
+    #              "A=M-1\n" + \
+    #              "M=D"
+
+def _function(args):
+    func, nvars = args[0].split()
+    func_label = '('+func+')\n'
+    push_zero = '@0\n' + 'D=A\n' + push_logic +'\n'
+    tot_zeroes = push_zero*int(nvars)
+    return func_label+tot_zeroes
+
+def _return(args):
+    ret_commands = '@LCL\n' +\
+            'D=M\n' +\
+            '@endFrame\n'+\
+                'M=D\n' +\
+            '@5\n' +\
+            'D=D-A\n' +\
+            'A=D\n' +\
+            'D=M\n' +\
+            '@retAddr\n' +\
+            'M=D\n' +\
+             '@SP\n' + \
+             'A=M-1\n' + \
+             'D=M\n' +\
+             '@ARG\n' +\
+             'A=M\n' +\
+             'M=D\n' +\
+             'D=A\n' +\
+             '@SP\n' +\
+             'M=D+1\n'
+    restore_THAT = '@endFrame\n' + 'A=M-1\n' + 'D=M\n'+\
+        '@THAT\n' + 'M=D\n'
+    restore_THIS = '@2\n' + 'D=A\n'+\
+        '@endFrame\n' + 'A=M-D\n' + 'D=M\n' + \
+                   '@THIS\n' + 'M=D\n'
+    restore_ARG = '@3\n' + 'D=A\n' + \
+                   '@endFrame\n' + 'A=M-D\n' + 'D=M\n' + \
+                   '@ARG\n' + 'M=D\n'
+    restore_LCL = '@4\n' + 'D=A\n' + \
+                   '@endFrame\n' + 'A=M-D\n' + 'D=M\n' + \
+                   '@LCL\n' + 'M=D\n'
+    goto_ret = "@retAddr\n"+'A=M\n'+"0;JMP"
+    return ret_commands+restore_THAT+restore_THIS+restore_ARG+restore_LCL+goto_ret
 
 def onestep ( content ):
     return  "@SP\n" +\
@@ -217,17 +458,15 @@ def incStack():
 
 def eq ( args ):
     debug_msg = "//eq\n" if debug else ""
-    return debug_msg + twostep("") +\
-            _if_else(preprocessing(), "D","JEQ", insert(0), insert(-1) ) +"\n" +\
-              incStack() + "\n" + debug_msg
+    naive = '@'
+    return glob_logic+'\n'+eq_logic+'\n'+bool_logic
 def lt ( args ):
-    return twostep("") +\
-            _if_else(preprocessing(), "D","JLT", insert(0), insert(-1)) +"\n" +\
-              incStack()
+    return glob_logic + '\n' + lt_logic + '\n' + bool_logic
+
+
 def gt ( args ):
-    return twostep("") +\
-            _if_else(preprocessing(), "D","JGT", insert(0), insert(-1)) +"\n" +\
-              incStack()
+    return glob_logic + '\n' + gt_logic + '\n' + bool_logic
+
 
 def neg ( args ):
     return onestep("M=-M") +"\n" +\
@@ -253,7 +492,13 @@ operator = {
     "neg" :     neg,
     "and" :     _and,
     "or" :      _or,
-    "not" :     _not
+    "not" :     _not,
+    "label":    label,
+    "goto":     goto,
+    "if-goto":  if_goto,
+    "function": _function,
+    "call": call,
+    "return": _return
 }
 
 
@@ -275,6 +520,7 @@ def compile_line( line ):
 """
 def compile_lines( lines ):
     ret = []
+
     for line in lines :
         ret.append( compile_line(line) )
     return ret
