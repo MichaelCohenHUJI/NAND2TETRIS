@@ -1,7 +1,9 @@
+
 @256
 D=A
 @SP
 M=D
+
 @Sys.init$ret.1
 D=A
 @SP
@@ -66,7 +68,7 @@ M=D
 M=M-1
 A=M
 D=M
-@.0
+@Class1.vm.0
 M=D
 //push argument1
 @1
@@ -84,7 +86,7 @@ M=D
 M=M-1
 A=M
 D=M
-@.1
+@Class1.vm.1
 M=D
 //push constant0
 @0
@@ -145,14 +147,14 @@ A=M
 (Class1.get)
 
 //push static0
-@.0
+@Class1.vm.0
 D=M
 @SP
 M=M+1
 A=M-1
 M=D
 //push static1
-@.1
+@Class1.vm.1
 D=M
 @SP
 M=M+1
@@ -231,7 +233,7 @@ M=D
 M=M-1
 A=M
 D=M
-@.0
+@Class2.vm.0
 M=D
 //push argument1
 @1
@@ -249,7 +251,7 @@ M=D
 M=M-1
 A=M
 D=M
-@.1
+@Class2.vm.1
 M=D
 //push constant0
 @0
@@ -310,14 +312,14 @@ A=M
 (Class2.get)
 
 //push static0
-@.0
+@Class2.vm.0
 D=M
 @SP
 M=M+1
 A=M-1
 M=D
 //push static1
-@.1
+@Class2.vm.1
 D=M
 @SP
 M=M+1
@@ -394,6 +396,7 @@ D=A
 M=M+1
 A=M-1
 M=D
+
 @Class1.set$ret.1
 D=A
 @SP
@@ -460,6 +463,7 @@ D=A
 M=M+1
 A=M-1
 M=D
+
 @Class2.set$ret.1
 D=A
 @SP
@@ -512,6 +516,7 @@ A=M
 D=M
 @5
 M=D
+
 @Class1.get$ret.1
 D=A
 @SP
@@ -557,6 +562,7 @@ M=D
 @Class1.get
 0;JMP
 (Class1.get$ret.1)
+
 @Class2.get$ret.1
 D=A
 @SP

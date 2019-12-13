@@ -1,0 +1,100 @@
+
+function Main.fibonacci 0
+
+| RAM[0] | RAM[7] | RAM[8] | RAM[9] |RAM[10] |RAM[11] |RAM[12] |RAM[13] |RAM[14] |
+|    492 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |   -488 |
+
+push argument 0
+
+| RAM[0] | RAM[7] | RAM[8] | RAM[9] |RAM[10] |RAM[11] |RAM[12] |RAM[13] |RAM[14] |
+|    492 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |   -488 |
+
+push constant 2
+
+| RAM[0] | RAM[7] | RAM[8] | RAM[9] |RAM[10] |RAM[11] |RAM[12] |RAM[13] |RAM[14] |
+|    492 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |   -488 |
+
+lt                     // checks if n<2
+
+| RAM[0] | RAM[7] | RAM[8] | RAM[9] |RAM[10] |RAM[11] |RAM[12] |RAM[13] |RAM[14] |
+|    492 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |   -488 |
+
+if-goto IF_TRUE
+
+| RAM[0] | RAM[7] | RAM[8] | RAM[9] |RAM[10] |RAM[11] |RAM[12] |RAM[13] |RAM[14] |
+|    492 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |   -488 |
+
+goto IF_FALSE
+
+| RAM[0] | RAM[7] | RAM[8] | RAM[9] |RAM[10] |RAM[11] |RAM[12] |RAM[13] |RAM[14] |
+|    492 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |   -488 |
+
+label IF_TRUE          // if n<2, return n
+
+| RAM[0] | RAM[7] | RAM[8] | RAM[9] |RAM[10] |RAM[11] |RAM[12] |RAM[13] |RAM[14] |
+|    492 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |   -488 |
+
+push argument 0
+
+| RAM[0] | RAM[7] | RAM[8] | RAM[9] |RAM[10] |RAM[11] |RAM[12] |RAM[13] |RAM[14] |
+|    492 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |   -488 |
+
+return
+
+| RAM[0] | RAM[7] | RAM[8] | RAM[9] |RAM[10] |RAM[11] |RAM[12] |RAM[13] |RAM[14] |
+|    492 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |   -488 |
+
+label IF_FALSE         // if n>=2, returns fib(n-2)+fib(n-1)
+
+| RAM[0] | RAM[7] | RAM[8] | RAM[9] |RAM[10] |RAM[11] |RAM[12] |RAM[13] |RAM[14] |
+|    492 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |   -488 |
+
+push argument 0
+
+| RAM[0] | RAM[7] | RAM[8] | RAM[9] |RAM[10] |RAM[11] |RAM[12] |RAM[13] |RAM[14] |
+|    492 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |   -488 |
+
+push constant 2
+
+| RAM[0] | RAM[7] | RAM[8] | RAM[9] |RAM[10] |RAM[11] |RAM[12] |RAM[13] |RAM[14] |
+|    492 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |   -488 |
+
+sub
+
+| RAM[0] | RAM[7] | RAM[8] | RAM[9] |RAM[10] |RAM[11] |RAM[12] |RAM[13] |RAM[14] |
+|    492 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |   -488 |
+
+call Main.fibonacci 1  // computes fib(n-2)
+
+| RAM[0] | RAM[7] | RAM[8] | RAM[9] |RAM[10] |RAM[11] |RAM[12] |RAM[13] |RAM[14] |
+|    492 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |   -488 |
+
+push argument 0
+
+| RAM[0] | RAM[7] | RAM[8] | RAM[9] |RAM[10] |RAM[11] |RAM[12] |RAM[13] |RAM[14] |
+|    492 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |   -488 |
+
+push constant 1
+
+| RAM[0] | RAM[7] | RAM[8] | RAM[9] |RAM[10] |RAM[11] |RAM[12] |RAM[13] |RAM[14] |
+|    492 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |   -488 |
+
+sub
+
+| RAM[0] | RAM[7] | RAM[8] | RAM[9] |RAM[10] |RAM[11] |RAM[12] |RAM[13] |RAM[14] |
+|    492 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |   -488 |
+
+call Main.fibonacci 1  // computes fib(n-1)
+
+| RAM[0] | RAM[7] | RAM[8] | RAM[9] |RAM[10] |RAM[11] |RAM[12] |RAM[13] |RAM[14] |
+|    492 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |   -488 |
+
+add                    // returns fib(n-1) + fib(n-2)
+
+| RAM[0] | RAM[7] | RAM[8] | RAM[9] |RAM[10] |RAM[11] |RAM[12] |RAM[13] |RAM[14] |
+|    492 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |   -488 |
+
+return
+
+| RAM[0] | RAM[7] | RAM[8] | RAM[9] |RAM[10] |RAM[11] |RAM[12] |RAM[13] |RAM[14] |
+|    492 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |   -488 |

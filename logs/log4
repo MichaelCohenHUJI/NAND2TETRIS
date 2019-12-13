@@ -1,0 +1,100 @@
+
+function Main.fibonacci 0
+
+| RAM[0] |RAM[288]|RAM[289]|RAM[290]|RAM[291]|RAM[292]|RAM[293]|RAM[294]|RAM[295]|
+|    492 |   -288 |    281 |      0 |     -8 |    251 |   -293 |    286 |      0 |
+
+push argument 0
+
+| RAM[0] |RAM[288]|RAM[289]|RAM[290]|RAM[291]|RAM[292]|RAM[293]|RAM[294]|RAM[295]|
+|    492 |   -288 |    281 |      0 |     -8 |    251 |   -293 |    286 |      0 |
+
+push constant 2
+
+| RAM[0] |RAM[288]|RAM[289]|RAM[290]|RAM[291]|RAM[292]|RAM[293]|RAM[294]|RAM[295]|
+|    492 |   -288 |    281 |      0 |     -8 |    251 |   -293 |    286 |      0 |
+
+lt                     // checks if n<2
+
+| RAM[0] |RAM[288]|RAM[289]|RAM[290]|RAM[291]|RAM[292]|RAM[293]|RAM[294]|RAM[295]|
+|    492 |   -288 |    281 |      0 |     -8 |    251 |   -293 |    286 |      0 |
+
+if-goto IF_TRUE
+
+| RAM[0] |RAM[288]|RAM[289]|RAM[290]|RAM[291]|RAM[292]|RAM[293]|RAM[294]|RAM[295]|
+|    492 |   -288 |    281 |      0 |     -8 |    251 |   -293 |    286 |      0 |
+
+goto IF_FALSE
+
+| RAM[0] |RAM[288]|RAM[289]|RAM[290]|RAM[291]|RAM[292]|RAM[293]|RAM[294]|RAM[295]|
+|    492 |   -288 |    281 |      0 |     -8 |    251 |   -293 |    286 |      0 |
+
+label IF_TRUE          // if n<2, return n
+
+| RAM[0] |RAM[288]|RAM[289]|RAM[290]|RAM[291]|RAM[292]|RAM[293]|RAM[294]|RAM[295]|
+|    492 |   -288 |    281 |      0 |     -8 |    251 |   -293 |    286 |      0 |
+
+push argument 0
+
+| RAM[0] |RAM[288]|RAM[289]|RAM[290]|RAM[291]|RAM[292]|RAM[293]|RAM[294]|RAM[295]|
+|    492 |   -288 |    281 |      0 |     -8 |    251 |   -293 |    286 |      0 |
+
+return
+
+| RAM[0] |RAM[288]|RAM[289]|RAM[290]|RAM[291]|RAM[292]|RAM[293]|RAM[294]|RAM[295]|
+|    492 |   -288 |    281 |      0 |     -8 |    251 |   -293 |    286 |      0 |
+
+label IF_FALSE         // if n>=2, returns fib(n-2)+fib(n-1)
+
+| RAM[0] |RAM[288]|RAM[289]|RAM[290]|RAM[291]|RAM[292]|RAM[293]|RAM[294]|RAM[295]|
+|    492 |   -288 |    281 |      0 |     -8 |    251 |   -293 |    286 |      0 |
+
+push argument 0
+
+| RAM[0] |RAM[288]|RAM[289]|RAM[290]|RAM[291]|RAM[292]|RAM[293]|RAM[294]|RAM[295]|
+|    492 |   -288 |    281 |      0 |     -8 |    251 |   -293 |    286 |      0 |
+
+push constant 2
+
+| RAM[0] |RAM[288]|RAM[289]|RAM[290]|RAM[291]|RAM[292]|RAM[293]|RAM[294]|RAM[295]|
+|    492 |   -288 |    281 |      0 |     -8 |    251 |   -293 |    286 |      0 |
+
+sub
+
+| RAM[0] |RAM[288]|RAM[289]|RAM[290]|RAM[291]|RAM[292]|RAM[293]|RAM[294]|RAM[295]|
+|    492 |   -288 |    281 |      0 |     -8 |    251 |   -293 |    286 |      0 |
+
+call Main.fibonacci 1  // computes fib(n-2)
+
+| RAM[0] |RAM[288]|RAM[289]|RAM[290]|RAM[291]|RAM[292]|RAM[293]|RAM[294]|RAM[295]|
+|    492 |   -288 |    281 |      0 |     -8 |    251 |   -293 |    286 |      0 |
+
+push argument 0
+
+| RAM[0] |RAM[288]|RAM[289]|RAM[290]|RAM[291]|RAM[292]|RAM[293]|RAM[294]|RAM[295]|
+|    492 |   -288 |    281 |      0 |     -8 |    251 |   -293 |    286 |      0 |
+
+push constant 1
+
+| RAM[0] |RAM[288]|RAM[289]|RAM[290]|RAM[291]|RAM[292]|RAM[293]|RAM[294]|RAM[295]|
+|    492 |   -288 |    281 |      0 |     -8 |    251 |   -293 |    286 |      0 |
+
+sub
+
+| RAM[0] |RAM[288]|RAM[289]|RAM[290]|RAM[291]|RAM[292]|RAM[293]|RAM[294]|RAM[295]|
+|    492 |   -288 |    281 |      0 |     -8 |    251 |   -293 |    286 |      0 |
+
+call Main.fibonacci 1  // computes fib(n-1)
+
+| RAM[0] |RAM[288]|RAM[289]|RAM[290]|RAM[291]|RAM[292]|RAM[293]|RAM[294]|RAM[295]|
+|    492 |   -288 |    281 |      0 |     -8 |    251 |   -293 |    286 |      0 |
+
+add                    // returns fib(n-1) + fib(n-2)
+
+| RAM[0] |RAM[288]|RAM[289]|RAM[290]|RAM[291]|RAM[292]|RAM[293]|RAM[294]|RAM[295]|
+|    492 |   -288 |    281 |      0 |     -8 |    251 |   -293 |    286 |      0 |
+
+return
+
+| RAM[0] |RAM[288]|RAM[289]|RAM[290]|RAM[291]|RAM[292]|RAM[293]|RAM[294]|RAM[295]|
+|    492 |   -288 |    281 |      0 |     -8 |    251 |   -293 |    286 |      0 |
