@@ -1,4 +1,3 @@
-
 import sys
 from vmparser import parse, call
 # import code
@@ -19,8 +18,11 @@ def outfilename( inputfile ):
     @assamble_one_file
     translate a single asm file to hack file.
 '''
-def translate_one_file( inputfile ):
-    hackcode = bootstrap_code+parse(inputfile) # parse(open( inputfile, 'r' ).readlines())
+def translate_one_file( inputfile, ex7 = True ):
+    hackcode = parse(inputfile) # parse(open( inputfile, 'r' ).readlines())
+    if not ex7 :
+        hackcode = bootstrap_code + hackcode 
+
     outpath = outfilename(inputfile)
     with open( outpath , "w" ) as output :
         output.write( hackcode )
@@ -42,7 +44,7 @@ if __name__ == '__main__':
         inputpath = sys.argv[1]
         if os.path.isdir(inputpath):
             dirname = inputpath.rsplit(sep='/', maxsplit=1)[-1]
-            outpath = inputpath + "/" + dirname +"StaticsTest.asm"
+            outpath = inputpath + "/" + dirname + ".asm"
             translate_dir(inputpath , outpath)
         elif os.path.isfile( inputpath ):
             translate_one_file( inputpath )
