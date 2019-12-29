@@ -1,0 +1,8 @@
+class If {
+  function void main() {
+    if () {
+
+    }
+    return;
+  }
+}

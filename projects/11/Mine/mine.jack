@@ -1,0 +1,5 @@
+class mine {
+    function void main() {
+        return;
+    }
+}

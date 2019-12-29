@@ -1,0 +1,13 @@
+class While {
+
+  function void main() {
+    var int x;
+    let x = 1;
+    while (x) {
+
+    }
+    return;
+  }
+
+
+}

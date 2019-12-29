@@ -1,0 +1,14 @@
+1. unzip the tester
+2. put the tests directory and the the the tester as brothers to your analyzer
+3. go into the tester and change (if needed) the mainFileName to your main
+    file name, the the tests directory address.
+4. run the tester
+
+
+####### REMARKS: #######
+- if you want more data, sucj as when infinite loop occurs (on which file)
+    then turn printAll to True in the tester.
+
+- If you get error such as:
+   IOError: [Errno 2] No such file or directory: 'tests/for_exam/Main.xml'
+  Then you need to change the 'tests_address' var in the tester.

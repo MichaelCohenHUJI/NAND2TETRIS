@@ -1,0 +1,17 @@
+PongGame
+instance
+Bat
+bat
+Ball
+ball
+wall
+exit
+score
+lastWall
+batWidth
+key
+bouncingDirection
+batLeft
+batRight
+ballLeft
+ballRight
