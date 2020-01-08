@@ -1,2 +1,24 @@
-PongGame
-game
+	Main
+	function main
+		main
+			<subroutineBody>
+			<varDec>
+				PongGame
+				game
+			</varDec>
+			<statements>
+				call
+					PongGame
+					newInstance
+					game
+							PongGame
+							getInstance
+				call
+					game
+					run
+				call
+					game
+					dispose
+				return
+			</statements>
+			</subroutineBody>

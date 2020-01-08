@@ -1,0 +1,16 @@
+	Main
+	function main
+		main
+			<subroutineBody>
+			<statements>
+				call
+					Output
+					printInt
+								1
+							add
+										2
+									call mull
+										3
+				return
+			</statements>
+			</subroutineBody>

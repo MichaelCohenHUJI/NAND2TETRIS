@@ -1,5 +1,196 @@
-Square
-square
-direction
-key
-exit
+	SquareGame
+	<classVarDec>
+		Square
+		square
+	</classVarDec>
+	<classVarDec>
+		direction
+	</classVarDec>
+	function new
+		SquareGame
+		new
+			<subroutineBody>
+			<statements>
+					square
+							Square
+							new
+										0
+										0
+										30
+					direction
+							0
+				return
+			</statements>
+			</subroutineBody>
+	function dispose
+		dispose
+			<subroutineBody>
+			<statements>
+				call
+					square
+					dispose
+				call
+					Memory
+					deAlloc
+				return
+			</statements>
+			</subroutineBody>
+	function moveSquare
+		moveSquare
+			<subroutineBody>
+			<statements>
+				<ifStatement>
+					<keyword> if </keyword>
+							direction
+							1
+					<statements>
+						call
+							square
+							moveUp
+					</statements>
+				</ifStatement>
+				<ifStatement>
+					<keyword> if </keyword>
+							direction
+							2
+					<statements>
+						call
+							square
+							moveDown
+					</statements>
+				</ifStatement>
+				<ifStatement>
+					<keyword> if </keyword>
+							direction
+							3
+					<statements>
+						call
+							square
+							moveLeft
+					</statements>
+				</ifStatement>
+				<ifStatement>
+					<keyword> if </keyword>
+							direction
+							4
+					<statements>
+						call
+							square
+							moveRight
+					</statements>
+				</ifStatement>
+				call
+					Sys
+					wait
+								5
+				return
+			</statements>
+			</subroutineBody>
+	function run
+		run
+			<subroutineBody>
+			<varDec>
+				key
+			</varDec>
+			<varDec>
+				exit
+			</varDec>
+			<statements>
+					exit
+				<whileStatement>
+					<keyword> while </keyword>
+								exit
+					<statements>
+						<whileStatement>
+							<keyword> while </keyword>
+									key
+									0
+							<statements>
+									key
+											Keyboard
+											keyPressed
+								call
+									moveSquare
+							</statements>
+						</whileStatement>
+						<ifStatement>
+							<keyword> if </keyword>
+									key
+									81
+							<statements>
+									exit
+							</statements>
+						</ifStatement>
+						<ifStatement>
+							<keyword> if </keyword>
+									key
+									90
+							<statements>
+								call
+									square
+									decSize
+							</statements>
+						</ifStatement>
+						<ifStatement>
+							<keyword> if </keyword>
+									key
+									88
+							<statements>
+								call
+									square
+									incSize
+							</statements>
+						</ifStatement>
+						<ifStatement>
+							<keyword> if </keyword>
+									key
+									131
+							<statements>
+									direction
+											1
+							</statements>
+						</ifStatement>
+						<ifStatement>
+							<keyword> if </keyword>
+									key
+									133
+							<statements>
+									direction
+											2
+							</statements>
+						</ifStatement>
+						<ifStatement>
+							<keyword> if </keyword>
+									key
+									130
+							<statements>
+									direction
+											3
+							</statements>
+						</ifStatement>
+						<ifStatement>
+							<keyword> if </keyword>
+									key
+									132
+							<statements>
+									direction
+											4
+							</statements>
+						</ifStatement>
+						<whileStatement>
+							<keyword> while </keyword>
+												key
+												0
+							<statements>
+									key
+											Keyboard
+											keyPressed
+								call
+									moveSquare
+							</statements>
+						</whileStatement>
+					</statements>
+				</whileStatement>
+				return
+			</statements>
+			</subroutineBody>

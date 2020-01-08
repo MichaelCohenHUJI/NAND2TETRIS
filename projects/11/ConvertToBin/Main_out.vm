@@ -1,4 +1,142 @@
-value
-mask
-position
-loop
+	Main
+	function main
+		main
+			<subroutineBody>
+			<varDec>
+				value
+			</varDec>
+			<statements>
+				call
+					Main
+					fillMemory
+								8001
+								16
+								sub
+									1
+					value
+							Memory
+							peek
+										8000
+				call
+					Main
+					convert
+								value
+				return
+			</statements>
+			</subroutineBody>
+	function convert
+		convert
+			value
+			<subroutineBody>
+			<varDec>
+				mask
+				position
+			</varDec>
+			<varDec>
+				loop
+			</varDec>
+			<statements>
+					loop
+				<whileStatement>
+					<keyword> while </keyword>
+							loop
+					<statements>
+							position
+									position
+								add
+									1
+							mask
+									Main
+									nextMask
+												mask
+						<ifStatement>
+							<keyword> if </keyword>
+												position
+												16
+							<statements>
+								<ifStatement>
+									<keyword> if </keyword>
+																value
+																mask
+														0
+									<statements>
+										call
+											Memory
+											poke
+														8000
+													add
+														position
+														1
+									</statements>
+									<statements>
+										call
+											Memory
+											poke
+														8000
+													add
+														position
+														0
+									</statements>
+								</ifStatement>
+							</statements>
+							<statements>
+									loop
+							</statements>
+						</ifStatement>
+					</statements>
+				</whileStatement>
+				return
+			</statements>
+			</subroutineBody>
+	function nextMask
+		nextMask
+			mask
+			<subroutineBody>
+			<statements>
+				<ifStatement>
+					<keyword> if </keyword>
+							mask
+							0
+					<statements>
+						return
+									1
+					</statements>
+					<statements>
+						return
+									mask
+								call mull
+									2
+					</statements>
+				</ifStatement>
+			</statements>
+			</subroutineBody>
+	function fillMemory
+		fillMemory
+			startAddress
+			length
+			value
+			<subroutineBody>
+			<statements>
+				<whileStatement>
+					<keyword> while </keyword>
+							length
+							0
+					<statements>
+						call
+							Memory
+							poke
+										startAddress
+										value
+							length
+									length
+								sub
+									1
+							startAddress
+									startAddress
+								add
+									1
+					</statements>
+				</whileStatement>
+				return
+			</statements>
+			</subroutineBody>

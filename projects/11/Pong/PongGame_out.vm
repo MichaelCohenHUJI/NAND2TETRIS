@@ -1,17 +1,335 @@
-PongGame
-instance
-Bat
-bat
-Ball
-ball
-wall
-exit
-score
-lastWall
-batWidth
-key
-bouncingDirection
-batLeft
-batRight
-ballLeft
-ballRight
+	PongGame
+	<classVarDec>
+		PongGame
+		instance
+	</classVarDec>
+	<classVarDec>
+		Bat
+		bat
+	</classVarDec>
+	<classVarDec>
+		Ball
+		ball
+	</classVarDec>
+	<classVarDec>
+		wall
+	</classVarDec>
+	<classVarDec>
+		exit
+	</classVarDec>
+	<classVarDec>
+		score
+	</classVarDec>
+	<classVarDec>
+		lastWall
+	</classVarDec>
+	<classVarDec>
+		batWidth
+	</classVarDec>
+	function new
+		PongGame
+		new
+			<subroutineBody>
+			<statements>
+				call
+					Screen
+					clearScreen
+					batWidth
+							50
+					bat
+							Bat
+							new
+										230
+										229
+										batWidth
+										7
+					ball
+							Ball
+							new
+										253
+										222
+										0
+										511
+										0
+										229
+				call
+					ball
+					setDestination
+								400
+								0
+				call
+					Screen
+					drawRectangle
+								0
+								238
+								511
+								240
+				call
+					Output
+					moveCursor
+								22
+								0
+				call
+					Output
+					printString
+								<stringConstant> Score: 0  </stringConstant>
+					exit
+					score
+							0
+					wall
+							0
+					lastWall
+							0
+				return
+			</statements>
+			</subroutineBody>
+	function dispose
+		dispose
+			<subroutineBody>
+			<statements>
+				call
+					bat
+					dispose
+				call
+					ball
+					dispose
+				call
+					Memory
+					deAlloc
+				return
+			</statements>
+			</subroutineBody>
+	function newInstance
+		newInstance
+			<subroutineBody>
+			<statements>
+					instance
+							PongGame
+							new
+				return
+			</statements>
+			</subroutineBody>
+	function getInstance
+		PongGame
+		getInstance
+			<subroutineBody>
+			<statements>
+				return
+							instance
+			</statements>
+			</subroutineBody>
+	function run
+		run
+			<subroutineBody>
+			<varDec>
+				key
+			</varDec>
+			<statements>
+				<whileStatement>
+					<keyword> while </keyword>
+								exit
+					<statements>
+						<whileStatement>
+							<keyword> while </keyword>
+											key
+											0
+												exit
+							<statements>
+									key
+											Keyboard
+											keyPressed
+								call
+									bat
+									move
+								call
+									moveBall
+								call
+									Sys
+									wait
+												50
+							</statements>
+						</whileStatement>
+						<ifStatement>
+							<keyword> if </keyword>
+									key
+									130
+							<statements>
+								call
+									bat
+									setDirection
+												1
+							</statements>
+							<statements>
+								<ifStatement>
+									<keyword> if </keyword>
+											key
+											132
+									<statements>
+										call
+											bat
+											setDirection
+														2
+									</statements>
+									<statements>
+										<ifStatement>
+											<keyword> if </keyword>
+													key
+													140
+											<statements>
+													exit
+											</statements>
+										</ifStatement>
+									</statements>
+								</ifStatement>
+							</statements>
+						</ifStatement>
+						<whileStatement>
+							<keyword> while </keyword>
+														key
+														0
+												exit
+							<statements>
+									key
+											Keyboard
+											keyPressed
+								call
+									bat
+									move
+								call
+									moveBall
+								call
+									Sys
+									wait
+												50
+							</statements>
+						</whileStatement>
+					</statements>
+				</whileStatement>
+				<ifStatement>
+					<keyword> if </keyword>
+							exit
+					<statements>
+						call
+							Output
+							moveCursor
+										10
+										27
+						call
+							Output
+							printString
+										<stringConstant> Game Over  </stringConstant>
+					</statements>
+				</ifStatement>
+				return
+			</statements>
+			</subroutineBody>
+	function moveBall
+		moveBall
+			<subroutineBody>
+			<varDec>
+				bouncingDirection
+				batLeft
+				batRight
+				ballLeft
+				ballRight
+			</varDec>
+			<statements>
+					wall
+							ball
+							move
+				<ifStatement>
+					<keyword> if </keyword>
+									wall
+									0
+												wall
+												lastWall
+					<statements>
+							lastWall
+									wall
+							bouncingDirection
+									0
+							batLeft
+									bat
+									getLeft
+							batRight
+									bat
+									getRight
+							ballLeft
+									ball
+									getLeft
+							ballRight
+									ball
+									getRight
+						<ifStatement>
+							<keyword> if </keyword>
+									wall
+									4
+							<statements>
+									exit
+													batLeft
+													ballRight
+													batRight
+													ballLeft
+								<ifStatement>
+									<keyword> if </keyword>
+												exit
+									<statements>
+										<ifStatement>
+											<keyword> if </keyword>
+													ballRight
+															batLeft
+														add
+															10
+											<statements>
+													bouncingDirection
+															sub
+																1
+											</statements>
+											<statements>
+												<ifStatement>
+													<keyword> if </keyword>
+															ballLeft
+																	batRight
+																sub
+																	10
+													<statements>
+															bouncingDirection
+																	1
+													</statements>
+												</ifStatement>
+											</statements>
+										</ifStatement>
+											batWidth
+													batWidth
+												sub
+													2
+										call
+											bat
+											setWidth
+														batWidth
+											score
+													score
+												add
+													1
+										call
+											Output
+											moveCursor
+														22
+														7
+										call
+											Output
+											printInt
+														score
+									</statements>
+								</ifStatement>
+							</statements>
+						</ifStatement>
+						call
+							ball
+							bounce
+										bouncingDirection
+					</statements>
+				</ifStatement>
+				return
+			</statements>
+			</subroutineBody>

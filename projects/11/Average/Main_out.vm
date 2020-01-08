@@ -1,5 +1,60 @@
-Array
-a
-length
-i
-sum
+	Main
+	function main
+		main
+			<subroutineBody>
+			<varDec>
+				Array
+				a
+			</varDec>
+			<varDec>
+				length
+			</varDec>
+			<varDec>
+				i
+				sum
+			</varDec>
+			<statements>
+					length
+							Keyboard
+							readInt
+										<stringConstant> How many numbers?  </stringConstant>
+					a
+							Array
+							new
+										length
+					i
+							0
+				<whileStatement>
+					<keyword> while </keyword>
+							i
+							length
+					<statements>
+							a
+									i
+									Keyboard
+									readInt
+												<stringConstant> Enter a number:  </stringConstant>
+							sum
+									sum
+								add
+									a
+											i
+							i
+									i
+								add
+									1
+					</statements>
+				</whileStatement>
+				call
+					Output
+					printString
+								<stringConstant> The average is  </stringConstant>
+				call
+					Output
+					printInt
+								sum
+							call div
+								length
+				return
+			</statements>
+			</subroutineBody>

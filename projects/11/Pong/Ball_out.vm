@@ -1,23 +1,503 @@
-x
-y
-lengthx
-lengthy
-d
-straightD
-diagonalD
-invert
-positivex
-positivey
-leftWall
-rightWall
-topWall
-bottomWall
-wall
-dx
-dy
-temp
-newx
-newy
-divLengthx
-divLengthy
-factor
+	Ball
+	<classVarDec>
+		x
+		y
+	</classVarDec>
+	<classVarDec>
+		lengthx
+		lengthy
+	</classVarDec>
+	<classVarDec>
+		d
+		straightD
+		diagonalD
+	</classVarDec>
+	<classVarDec>
+		invert
+		positivex
+		positivey
+	</classVarDec>
+	<classVarDec>
+		leftWall
+		rightWall
+		topWall
+		bottomWall
+	</classVarDec>
+	<classVarDec>
+		wall
+	</classVarDec>
+	function new
+		Ball
+		new
+			Ax
+			Ay
+			AleftWall
+			ArightWall
+			AtopWall
+			AbottomWall
+			<subroutineBody>
+			<statements>
+					x
+							Ax
+					y
+							Ay
+					leftWall
+							AleftWall
+					rightWall
+							ArightWall
+						sub
+							6
+					topWall
+							AtopWall
+					bottomWall
+							AbottomWall
+						sub
+							6
+					wall
+							0
+				call
+					show
+				return
+			</statements>
+			</subroutineBody>
+	function dispose
+		dispose
+			<subroutineBody>
+			<statements>
+				call
+					Memory
+					deAlloc
+				return
+			</statements>
+			</subroutineBody>
+	function show
+		show
+			<subroutineBody>
+			<statements>
+				call
+					Screen
+					setColor
+				call
+					draw
+				return
+			</statements>
+			</subroutineBody>
+	function hide
+		hide
+			<subroutineBody>
+			<statements>
+				call
+					Screen
+					setColor
+				call
+					draw
+				return
+			</statements>
+			</subroutineBody>
+	function draw
+		draw
+			<subroutineBody>
+			<statements>
+				call
+					Screen
+					drawRectangle
+								x
+								y
+								x
+							add
+								5
+								y
+							add
+								5
+				return
+			</statements>
+			</subroutineBody>
+	function getLeft
+		getLeft
+			<subroutineBody>
+			<statements>
+				return
+							x
+			</statements>
+			</subroutineBody>
+	function getRight
+		getRight
+			<subroutineBody>
+			<statements>
+				return
+							x
+						add
+							5
+			</statements>
+			</subroutineBody>
+	function setDestination
+		setDestination
+			destx
+			desty
+			<subroutineBody>
+			<varDec>
+				dx
+				dy
+				temp
+			</varDec>
+			<statements>
+					lengthx
+							destx
+						sub
+							x
+					lengthy
+							desty
+						sub
+							y
+					dx
+							Math
+							abs
+										lengthx
+					dy
+							Math
+							abs
+										lengthy
+					invert
+									dx
+									dy
+				<ifStatement>
+					<keyword> if </keyword>
+							invert
+					<statements>
+							temp
+									dx
+							dx
+									dy
+							dy
+									temp
+							positivex
+											y
+											desty
+							positivey
+											x
+											destx
+					</statements>
+					<statements>
+							positivex
+											x
+											destx
+							positivey
+											y
+											desty
+					</statements>
+				</ifStatement>
+					d
+									2
+								call mull
+									dy
+						sub
+							dx
+					straightD
+							2
+						call mull
+							dy
+					diagonalD
+							2
+						call mull
+									dy
+								sub
+									dx
+				return
+			</statements>
+			</subroutineBody>
+	function move
+		move
+			<subroutineBody>
+			<statements>
+				call
+					hide
+				<ifStatement>
+					<keyword> if </keyword>
+							d
+							0
+					<statements>
+							d
+									d
+								add
+									straightD
+					</statements>
+					<statements>
+							d
+									d
+								add
+									diagonalD
+						<ifStatement>
+							<keyword> if </keyword>
+									positivey
+							<statements>
+								<ifStatement>
+									<keyword> if </keyword>
+											invert
+									<statements>
+											x
+													x
+												add
+													4
+									</statements>
+									<statements>
+											y
+													y
+												add
+													4
+									</statements>
+								</ifStatement>
+							</statements>
+							<statements>
+								<ifStatement>
+									<keyword> if </keyword>
+											invert
+									<statements>
+											x
+													x
+												sub
+													4
+									</statements>
+									<statements>
+											y
+													y
+												sub
+													4
+									</statements>
+								</ifStatement>
+							</statements>
+						</ifStatement>
+					</statements>
+				</ifStatement>
+				<ifStatement>
+					<keyword> if </keyword>
+							positivex
+					<statements>
+						<ifStatement>
+							<keyword> if </keyword>
+									invert
+							<statements>
+									y
+											y
+										add
+											4
+							</statements>
+							<statements>
+									x
+											x
+										add
+											4
+							</statements>
+						</ifStatement>
+					</statements>
+					<statements>
+						<ifStatement>
+							<keyword> if </keyword>
+									invert
+							<statements>
+									y
+											y
+										sub
+											4
+							</statements>
+							<statements>
+									x
+											x
+										sub
+											4
+							</statements>
+						</ifStatement>
+					</statements>
+				</ifStatement>
+				<ifStatement>
+					<keyword> if </keyword>
+										x
+										leftWall
+					<statements>
+							wall
+									1
+							x
+									leftWall
+					</statements>
+				</ifStatement>
+				<ifStatement>
+					<keyword> if </keyword>
+										x
+										rightWall
+					<statements>
+							wall
+									2
+							x
+									rightWall
+					</statements>
+				</ifStatement>
+				<ifStatement>
+					<keyword> if </keyword>
+										y
+										topWall
+					<statements>
+							wall
+									3
+							y
+									topWall
+					</statements>
+				</ifStatement>
+				<ifStatement>
+					<keyword> if </keyword>
+										y
+										bottomWall
+					<statements>
+							wall
+									4
+							y
+									bottomWall
+					</statements>
+				</ifStatement>
+				call
+					show
+				return
+							wall
+			</statements>
+			</subroutineBody>
+	function bounce
+		bounce
+			bouncingDirection
+			<subroutineBody>
+			<varDec>
+				newx
+				newy
+				divLengthx
+				divLengthy
+				factor
+			</varDec>
+			<statements>
+					divLengthx
+							lengthx
+						call div
+							10
+					divLengthy
+							lengthy
+						call div
+							10
+				<ifStatement>
+					<keyword> if </keyword>
+							bouncingDirection
+							0
+					<statements>
+							factor
+									10
+					</statements>
+					<statements>
+						<ifStatement>
+							<keyword> if </keyword>
+																lengthx
+																0
+													bouncingDirection
+													1
+													lengthx
+													0
+													bouncingDirection
+															sub
+																1
+							<statements>
+									factor
+											20
+							</statements>
+							<statements>
+									factor
+											5
+							</statements>
+						</ifStatement>
+					</statements>
+				</ifStatement>
+				<ifStatement>
+					<keyword> if </keyword>
+							wall
+							1
+					<statements>
+							newx
+									506
+							newy
+											divLengthy
+										call mull
+													sub
+														50
+								call div
+									divLengthx
+							newy
+									y
+								add
+											newy
+										call mull
+											factor
+					</statements>
+					<statements>
+						<ifStatement>
+							<keyword> if </keyword>
+									wall
+									2
+							<statements>
+									newx
+											0
+									newy
+													divLengthy
+												call mull
+													50
+										call div
+											divLengthx
+									newy
+											y
+										add
+													newy
+												call mull
+													factor
+							</statements>
+							<statements>
+								<ifStatement>
+									<keyword> if </keyword>
+											wall
+											3
+									<statements>
+											newy
+													250
+											newx
+															divLengthx
+														call mull
+																	sub
+																		25
+												call div
+													divLengthy
+											newx
+													x
+												add
+															newx
+														call mull
+															factor
+									</statements>
+									<statements>
+											newy
+													0
+											newx
+															divLengthx
+														call mull
+															25
+												call div
+													divLengthy
+											newx
+													x
+												add
+															newx
+														call mull
+															factor
+									</statements>
+								</ifStatement>
+							</statements>
+						</ifStatement>
+					</statements>
+				</ifStatement>
+				call
+					setDestination
+								newx
+								newy
+				return
+			</statements>
+			</subroutineBody>

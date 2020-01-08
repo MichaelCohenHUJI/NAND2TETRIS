@@ -1,1 +1,19 @@
-x
+	While
+	function main
+		main
+			<subroutineBody>
+			<varDec>
+				x
+			</varDec>
+			<statements>
+					x
+							1
+				<whileStatement>
+					<keyword> while </keyword>
+							x
+					<statements>
+					</statements>
+				</whileStatement>
+				return
+			</statements>
+			</subroutineBody>

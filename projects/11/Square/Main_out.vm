@@ -1,2 +1,21 @@
-SquareGame
-game
+	Main
+	function main
+		main
+			<subroutineBody>
+			<varDec>
+				SquareGame
+				game
+			</varDec>
+			<statements>
+					game
+							SquareGame
+							new
+				call
+					game
+					run
+				call
+					game
+					dispose
+				return
+			</statements>
+			</subroutineBody>
