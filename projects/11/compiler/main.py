@@ -5,7 +5,7 @@ import inc.Streamer as Streamer
 import os
 
 def outfilename( inputfile ):
-    return inputfile.replace( ".jack" , "_out.vm")
+    return inputfile.replace( ".jack" , ".vm")
 
 def compile_one_file(inputfile):
     xmlcode =  Node.generateRoot(Streamer.Streamer(inputfile)).generate() #parser.parse(open( inputfile, 'r' ).readlines())

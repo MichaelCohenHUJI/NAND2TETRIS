@@ -1,3 +1,8 @@
-function Const.main 0
-push constant 0
-return
+	Const
+	function main
+		main
+			<subroutineBody>
+			<statements>
+				return
+			</statements>
+			</subroutineBody>

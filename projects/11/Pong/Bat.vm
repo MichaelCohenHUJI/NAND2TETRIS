@@ -1,207 +1,244 @@
-function Bat.new 0
-push constant 5
-call Memory.alloc 1
-pop pointer 0
-push argument 0
-pop this 0
-push argument 1
-pop this 1
-push argument 2
-pop this 2
-push argument 3
-pop this 3
-push constant 2
-pop this 4
-push pointer 0
-call Bat.show 1
-pop temp 0
-push pointer 0
-return
-function Bat.dispose 0
-push argument 0
-pop pointer 0
-push pointer 0
-call Memory.deAlloc 1
-pop temp 0
-push constant 0
-return
-function Bat.show 0
-push argument 0
-pop pointer 0
-push constant 0
-not
-call Screen.setColor 1
-pop temp 0
-push pointer 0
-call Bat.draw 1
-pop temp 0
-push constant 0
-return
-function Bat.hide 0
-push argument 0
-pop pointer 0
-push constant 0
-call Screen.setColor 1
-pop temp 0
-push pointer 0
-call Bat.draw 1
-pop temp 0
-push constant 0
-return
-function Bat.draw 0
-push argument 0
-pop pointer 0
-push this 0
-push this 1
-push this 0
-push this 2
-add
-push this 1
-push this 3
-add
-call Screen.drawRectangle 4
-pop temp 0
-push constant 0
-return
-function Bat.setDirection 0
-push argument 0
-pop pointer 0
-push argument 1
-pop this 4
-push constant 0
-return
-function Bat.getLeft 0
-push argument 0
-pop pointer 0
-push this 0
-return
-function Bat.getRight 0
-push argument 0
-pop pointer 0
-push this 0
-push this 2
-add
-return
-function Bat.setWidth 0
-push argument 0
-pop pointer 0
-push pointer 0
-call Bat.hide 1
-pop temp 0
-push argument 1
-pop this 2
-push pointer 0
-call Bat.show 1
-pop temp 0
-push constant 0
-return
-function Bat.move 0
-push argument 0
-pop pointer 0
-push this 4
-push constant 1
-eq
-if-goto IF_TRUE0
-goto IF_FALSE0
-label IF_TRUE0
-push this 0
-push constant 4
-sub
-pop this 0
-push this 0
-push constant 0
-lt
-if-goto IF_TRUE1
-goto IF_FALSE1
-label IF_TRUE1
-push constant 0
-pop this 0
-label IF_FALSE1
-push constant 0
-call Screen.setColor 1
-pop temp 0
-push this 0
-push this 2
-add
-push constant 1
-add
-push this 1
-push this 0
-push this 2
-add
-push constant 4
-add
-push this 1
-push this 3
-add
-call Screen.drawRectangle 4
-pop temp 0
-push constant 0
-not
-call Screen.setColor 1
-pop temp 0
-push this 0
-push this 1
-push this 0
-push constant 3
-add
-push this 1
-push this 3
-add
-call Screen.drawRectangle 4
-pop temp 0
-goto IF_END0
-label IF_FALSE0
-push this 0
-push constant 4
-add
-pop this 0
-push this 0
-push this 2
-add
-push constant 511
-gt
-if-goto IF_TRUE2
-goto IF_FALSE2
-label IF_TRUE2
-push constant 511
-push this 2
-sub
-pop this 0
-label IF_FALSE2
-push constant 0
-call Screen.setColor 1
-pop temp 0
-push this 0
-push constant 4
-sub
-push this 1
-push this 0
-push constant 1
-sub
-push this 1
-push this 3
-add
-call Screen.drawRectangle 4
-pop temp 0
-push constant 0
-not
-call Screen.setColor 1
-pop temp 0
-push this 0
-push this 2
-add
-push constant 3
-sub
-push this 1
-push this 0
-push this 2
-add
-push this 1
-push this 3
-add
-call Screen.drawRectangle 4
-pop temp 0
-label IF_END0
-push constant 0
-return
+	Bat
+	<classVarDec>
+		x
+		y
+	</classVarDec>
+	<classVarDec>
+		width
+		height
+	</classVarDec>
+	<classVarDec>
+		direction
+	</classVarDec>
+	function new
+		Bat
+		new
+			Ax
+			Ay
+			Awidth
+			Aheight
+			<subroutineBody>
+			<statements>
+					x
+							Ax
+					y
+							Ay
+					width
+							Awidth
+					height
+							Aheight
+					direction
+							2
+				call
+					show
+				return
+			</statements>
+			</subroutineBody>
+	function dispose
+		dispose
+			<subroutineBody>
+			<statements>
+				call
+					Memory
+					deAlloc
+				return
+			</statements>
+			</subroutineBody>
+	function show
+		show
+			<subroutineBody>
+			<statements>
+				call
+					Screen
+					setColor
+				call
+					draw
+				return
+			</statements>
+			</subroutineBody>
+	function hide
+		hide
+			<subroutineBody>
+			<statements>
+				call
+					Screen
+					setColor
+				call
+					draw
+				return
+			</statements>
+			</subroutineBody>
+	function draw
+		draw
+			<subroutineBody>
+			<statements>
+				call
+					Screen
+					drawRectangle
+								x
+								y
+								x
+							add
+								width
+								y
+							add
+								height
+				return
+			</statements>
+			</subroutineBody>
+	function setDirection
+		setDirection
+			Adirection
+			<subroutineBody>
+			<statements>
+					direction
+							Adirection
+				return
+			</statements>
+			</subroutineBody>
+	function getLeft
+		getLeft
+			<subroutineBody>
+			<statements>
+				return
+							x
+			</statements>
+			</subroutineBody>
+	function getRight
+		getRight
+			<subroutineBody>
+			<statements>
+				return
+							x
+						add
+							width
+			</statements>
+			</subroutineBody>
+	function setWidth
+		setWidth
+			Awidth
+			<subroutineBody>
+			<statements>
+				call
+					hide
+					width
+							Awidth
+				call
+					show
+				return
+			</statements>
+			</subroutineBody>
+	function move
+		move
+			<subroutineBody>
+			<statements>
+				<ifStatement>
+					<keyword> if </keyword>
+							direction
+							1
+					<statements>
+							x
+									x
+								sub
+									4
+						<ifStatement>
+							<keyword> if </keyword>
+									x
+									0
+							<statements>
+									x
+											0
+							</statements>
+						</ifStatement>
+						call
+							Screen
+							setColor
+						call
+							Screen
+							drawRectangle
+												x
+											add
+												width
+									add
+										1
+										y
+												x
+											add
+												width
+									add
+										4
+										y
+									add
+										height
+						call
+							Screen
+							setColor
+						call
+							Screen
+							drawRectangle
+										x
+										y
+										x
+									add
+										3
+										y
+									add
+										height
+					</statements>
+					<statements>
+							x
+									x
+								add
+									4
+						<ifStatement>
+							<keyword> if </keyword>
+											x
+										add
+											width
+									511
+							<statements>
+									x
+											511
+										sub
+											width
+							</statements>
+						</ifStatement>
+						call
+							Screen
+							setColor
+						call
+							Screen
+							drawRectangle
+										x
+									sub
+										4
+										y
+										x
+									sub
+										1
+										y
+									add
+										height
+						call
+							Screen
+							setColor
+						call
+							Screen
+							drawRectangle
+												x
+											add
+												width
+									sub
+										3
+										y
+										x
+									add
+										width
+										y
+									add
+										height
+					</statements>
+				</ifStatement>
+				return
+			</statements>
+			</subroutineBody>

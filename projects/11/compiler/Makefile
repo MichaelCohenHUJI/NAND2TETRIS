@@ -18,7 +18,7 @@
 # need to be run before this rule) and commands that are run one after the other. The "all" rule is what
 # runs when you call "make":
 all:
-	chmod a+x JackAnalyzer
+	chmod a+x JackCompiler
 	chmod a+x ./main.py
 
 

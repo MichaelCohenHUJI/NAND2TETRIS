@@ -23,11 +23,13 @@ def is_symbol_node(_node):
 def is_IdentifierNode(_node):
     return str(type(_node)) ==\
     "<class 'inc.Node.IdentifierNode'>"
+
 def update_table(table, _name, _type, kind):
     kind = kind if kind != "var" else "local"
     index = table[ 'index__' ][  kind ] + 1
     table[ kind ][ _name ] = (_type, kind, index)
     table[ 'index__' ][  kind ] = index
+
 def last_node_is( _func, _perent):
     return len(_perent.children) > 0 and\
      _func(_perent.children[-1])
@@ -442,7 +444,6 @@ def generateRoot(streamer):
      **{ kind : {} for kind in _var_kinds  } , **{ "functions" : {} } }
 
     ret = nextToken(streamer, table)
-    pprint(table)
     return ret
 # stack-over-flow !!!
 def check_int(s):

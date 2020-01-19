@@ -1,304 +1,333 @@
-function Square.new 0
-push constant 3
-call Memory.alloc 1
-pop pointer 0
-push argument 0
-pop this 0
-push argument 1
-pop this 1
-push argument 2
-pop this 2
-push pointer 0
-call Square.draw 1
-pop temp 0
-push pointer 0
-return
-function Square.dispose 0
-push argument 0
-pop pointer 0
-push pointer 0
-call Memory.deAlloc 1
-pop temp 0
-push constant 0
-return
-function Square.draw 0
-push argument 0
-pop pointer 0
-push constant 0
-not
-call Screen.setColor 1
-pop temp 0
-push this 0
-push this 1
-push this 0
-push this 2
-add
-push this 1
-push this 2
-add
-call Screen.drawRectangle 4
-pop temp 0
-push constant 0
-return
-function Square.erase 0
-push argument 0
-pop pointer 0
-push constant 0
-call Screen.setColor 1
-pop temp 0
-push this 0
-push this 1
-push this 0
-push this 2
-add
-push this 1
-push this 2
-add
-call Screen.drawRectangle 4
-pop temp 0
-push constant 0
-return
-function Square.incSize 0
-push argument 0
-pop pointer 0
-push this 1
-push this 2
-add
-push constant 254
-lt
-push this 0
-push this 2
-add
-push constant 510
-lt
-and
-if-goto IF_TRUE0
-goto IF_FALSE0
-label IF_TRUE0
-push pointer 0
-call Square.erase 1
-pop temp 0
-push this 2
-push constant 2
-add
-pop this 2
-push pointer 0
-call Square.draw 1
-pop temp 0
-label IF_FALSE0
-push constant 0
-return
-function Square.decSize 0
-push argument 0
-pop pointer 0
-push this 2
-push constant 2
-gt
-if-goto IF_TRUE0
-goto IF_FALSE0
-label IF_TRUE0
-push pointer 0
-call Square.erase 1
-pop temp 0
-push this 2
-push constant 2
-sub
-pop this 2
-push pointer 0
-call Square.draw 1
-pop temp 0
-label IF_FALSE0
-push constant 0
-return
-function Square.moveUp 0
-push argument 0
-pop pointer 0
-push this 1
-push constant 1
-gt
-if-goto IF_TRUE0
-goto IF_FALSE0
-label IF_TRUE0
-push constant 0
-call Screen.setColor 1
-pop temp 0
-push this 0
-push this 1
-push this 2
-add
-push constant 1
-sub
-push this 0
-push this 2
-add
-push this 1
-push this 2
-add
-call Screen.drawRectangle 4
-pop temp 0
-push this 1
-push constant 2
-sub
-pop this 1
-push constant 0
-not
-call Screen.setColor 1
-pop temp 0
-push this 0
-push this 1
-push this 0
-push this 2
-add
-push this 1
-push constant 1
-add
-call Screen.drawRectangle 4
-pop temp 0
-label IF_FALSE0
-push constant 0
-return
-function Square.moveDown 0
-push argument 0
-pop pointer 0
-push this 1
-push this 2
-add
-push constant 254
-lt
-if-goto IF_TRUE0
-goto IF_FALSE0
-label IF_TRUE0
-push constant 0
-call Screen.setColor 1
-pop temp 0
-push this 0
-push this 1
-push this 0
-push this 2
-add
-push this 1
-push constant 1
-add
-call Screen.drawRectangle 4
-pop temp 0
-push this 1
-push constant 2
-add
-pop this 1
-push constant 0
-not
-call Screen.setColor 1
-pop temp 0
-push this 0
-push this 1
-push this 2
-add
-push constant 1
-sub
-push this 0
-push this 2
-add
-push this 1
-push this 2
-add
-call Screen.drawRectangle 4
-pop temp 0
-label IF_FALSE0
-push constant 0
-return
-function Square.moveLeft 0
-push argument 0
-pop pointer 0
-push this 0
-push constant 1
-gt
-if-goto IF_TRUE0
-goto IF_FALSE0
-label IF_TRUE0
-push constant 0
-call Screen.setColor 1
-pop temp 0
-push this 0
-push this 2
-add
-push constant 1
-sub
-push this 1
-push this 0
-push this 2
-add
-push this 1
-push this 2
-add
-call Screen.drawRectangle 4
-pop temp 0
-push this 0
-push constant 2
-sub
-pop this 0
-push constant 0
-not
-call Screen.setColor 1
-pop temp 0
-push this 0
-push this 1
-push this 0
-push constant 1
-add
-push this 1
-push this 2
-add
-call Screen.drawRectangle 4
-pop temp 0
-label IF_FALSE0
-push constant 0
-return
-function Square.moveRight 0
-push argument 0
-pop pointer 0
-push this 0
-push this 2
-add
-push constant 510
-lt
-if-goto IF_TRUE0
-goto IF_FALSE0
-label IF_TRUE0
-push constant 0
-call Screen.setColor 1
-pop temp 0
-push this 0
-push this 1
-push this 0
-push constant 1
-add
-push this 1
-push this 2
-add
-call Screen.drawRectangle 4
-pop temp 0
-push this 0
-push constant 2
-add
-pop this 0
-push constant 0
-not
-call Screen.setColor 1
-pop temp 0
-push this 0
-push this 2
-add
-push constant 1
-sub
-push this 1
-push this 0
-push this 2
-add
-push this 1
-push this 2
-add
-call Screen.drawRectangle 4
-pop temp 0
-label IF_FALSE0
-push constant 0
-return
+	Square
+	<classVarDec>
+		x
+		y
+	</classVarDec>
+	<classVarDec>
+		size
+	</classVarDec>
+	function new
+		Square
+		new
+			Ax
+			Ay
+			Asize
+			<subroutineBody>
+			<statements>
+					x
+							Ax
+					y
+							Ay
+					size
+							Asize
+				call
+					draw
+				return
+			</statements>
+			</subroutineBody>
+	function dispose
+		dispose
+			<subroutineBody>
+			<statements>
+				call
+					Memory
+					deAlloc
+				return
+			</statements>
+			</subroutineBody>
+	function draw
+		draw
+			<subroutineBody>
+			<statements>
+				call
+					Screen
+					setColor
+				call
+					Screen
+					drawRectangle
+								x
+								y
+								x
+							add
+								size
+								y
+							add
+								size
+				return
+			</statements>
+			</subroutineBody>
+	function erase
+		erase
+			<subroutineBody>
+			<statements>
+				call
+					Screen
+					setColor
+				call
+					Screen
+					drawRectangle
+								x
+								y
+								x
+							add
+								size
+								y
+							add
+								size
+				return
+			</statements>
+			</subroutineBody>
+	function incSize
+		incSize
+			<subroutineBody>
+			<statements>
+				<ifStatement>
+					<keyword> if </keyword>
+											y
+										add
+											size
+									254
+											x
+										add
+											size
+									510
+					<statements>
+						call
+							erase
+							size
+									size
+								add
+									2
+						call
+							draw
+					</statements>
+				</ifStatement>
+				return
+			</statements>
+			</subroutineBody>
+	function decSize
+		decSize
+			<subroutineBody>
+			<statements>
+				<ifStatement>
+					<keyword> if </keyword>
+							size
+							2
+					<statements>
+						call
+							erase
+							size
+									size
+								sub
+									2
+						call
+							draw
+					</statements>
+				</ifStatement>
+				return
+			</statements>
+			</subroutineBody>
+	function moveUp
+		moveUp
+			<subroutineBody>
+			<statements>
+				<ifStatement>
+					<keyword> if </keyword>
+							y
+							1
+					<statements>
+						call
+							Screen
+							setColor
+						call
+							Screen
+							drawRectangle
+										x
+												y
+											add
+												size
+									sub
+										1
+										x
+									add
+										size
+										y
+									add
+										size
+							y
+									y
+								sub
+									2
+						call
+							Screen
+							setColor
+						call
+							Screen
+							drawRectangle
+										x
+										y
+										x
+									add
+										size
+										y
+									add
+										1
+					</statements>
+				</ifStatement>
+				return
+			</statements>
+			</subroutineBody>
+	function moveDown
+		moveDown
+			<subroutineBody>
+			<statements>
+				<ifStatement>
+					<keyword> if </keyword>
+									y
+								add
+									size
+							254
+					<statements>
+						call
+							Screen
+							setColor
+						call
+							Screen
+							drawRectangle
+										x
+										y
+										x
+									add
+										size
+										y
+									add
+										1
+							y
+									y
+								add
+									2
+						call
+							Screen
+							setColor
+						call
+							Screen
+							drawRectangle
+										x
+												y
+											add
+												size
+									sub
+										1
+										x
+									add
+										size
+										y
+									add
+										size
+					</statements>
+				</ifStatement>
+				return
+			</statements>
+			</subroutineBody>
+	function moveLeft
+		moveLeft
+			<subroutineBody>
+			<statements>
+				<ifStatement>
+					<keyword> if </keyword>
+							x
+							1
+					<statements>
+						call
+							Screen
+							setColor
+						call
+							Screen
+							drawRectangle
+												x
+											add
+												size
+									sub
+										1
+										y
+										x
+									add
+										size
+										y
+									add
+										size
+							x
+									x
+								sub
+									2
+						call
+							Screen
+							setColor
+						call
+							Screen
+							drawRectangle
+										x
+										y
+										x
+									add
+										1
+										y
+									add
+										size
+					</statements>
+				</ifStatement>
+				return
+			</statements>
+			</subroutineBody>
+	function moveRight
+		moveRight
+			<subroutineBody>
+			<statements>
+				<ifStatement>
+					<keyword> if </keyword>
+									x
+								add
+									size
+							510
+					<statements>
+						call
+							Screen
+							setColor
+						call
+							Screen
+							drawRectangle
+										x
+										y
+										x
+									add
+										1
+										y
+									add
+										size
+							x
+									x
+								add
+									2
+						call
+							Screen
+							setColor
+						call
+							Screen
+							drawRectangle
+												x
+											add
+												size
+									sub
+										1
+										y
+										x
+									add
+										size
+										y
+									add
+										size
+					</statements>
+				</ifStatement>
+				return
+			</statements>
+			</subroutineBody>

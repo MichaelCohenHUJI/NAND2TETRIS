@@ -1,3 +1,8 @@
-function mine.main 0
-push constant 0
-return
+	mine
+	function main
+		main
+			<subroutineBody>
+			<statements>
+				return
+			</statements>
+			</subroutineBody>

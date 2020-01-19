@@ -1,318 +1,335 @@
-function PongGame.new 0
-push constant 7
-call Memory.alloc 1
-pop pointer 0
-call Screen.clearScreen 0
-pop temp 0
-push constant 50
-pop this 6
-push constant 230
-push constant 229
-push this 6
-push constant 7
-call Bat.new 4
-pop this 0
-push constant 253
-push constant 222
-push constant 0
-push constant 511
-push constant 0
-push constant 229
-call Ball.new 6
-pop this 1
-push this 1
-push constant 400
-push constant 0
-call Ball.setDestination 3
-pop temp 0
-push constant 0
-push constant 238
-push constant 511
-push constant 240
-call Screen.drawRectangle 4
-pop temp 0
-push constant 22
-push constant 0
-call Output.moveCursor 2
-pop temp 0
-push constant 8
-call String.new 1
-push constant 83
-call String.appendChar 2
-push constant 99
-call String.appendChar 2
-push constant 111
-call String.appendChar 2
-push constant 114
-call String.appendChar 2
-push constant 101
-call String.appendChar 2
-push constant 58
-call String.appendChar 2
-push constant 32
-call String.appendChar 2
-push constant 48
-call String.appendChar 2
-call Output.printString 1
-pop temp 0
-push constant 0
-pop this 3
-push constant 0
-pop this 4
-push constant 0
-pop this 2
-push constant 0
-pop this 5
-push pointer 0
-return
-function PongGame.dispose 0
-push argument 0
-pop pointer 0
-push this 0
-call Bat.dispose 1
-pop temp 0
-push this 1
-call Ball.dispose 1
-pop temp 0
-push pointer 0
-call Memory.deAlloc 1
-pop temp 0
-push constant 0
-return
-function PongGame.newInstance 0
-call PongGame.new 0
-pop static 0
-push constant 0
-return
-function PongGame.getInstance 0
-push static 0
-return
-function PongGame.run 1
-push argument 0
-pop pointer 0
-label WHILE_EXP0
-push this 3
-not
-not
-if-goto WHILE_END0
-label WHILE_EXP1
-push local 0
-push constant 0
-eq
-push this 3
-not
-and
-not
-if-goto WHILE_END1
-call Keyboard.keyPressed 0
-pop local 0
-push this 0
-call Bat.move 1
-pop temp 0
-push pointer 0
-call PongGame.moveBall 1
-pop temp 0
-push constant 50
-call Sys.wait 1
-pop temp 0
-goto WHILE_EXP1
-label WHILE_END1
-push local 0
-push constant 130
-eq
-if-goto IF_TRUE0
-goto IF_FALSE0
-label IF_TRUE0
-push this 0
-push constant 1
-call Bat.setDirection 2
-pop temp 0
-goto IF_END0
-label IF_FALSE0
-push local 0
-push constant 132
-eq
-if-goto IF_TRUE1
-goto IF_FALSE1
-label IF_TRUE1
-push this 0
-push constant 2
-call Bat.setDirection 2
-pop temp 0
-goto IF_END1
-label IF_FALSE1
-push local 0
-push constant 140
-eq
-if-goto IF_TRUE2
-goto IF_FALSE2
-label IF_TRUE2
-push constant 0
-not
-pop this 3
-label IF_FALSE2
-label IF_END1
-label IF_END0
-label WHILE_EXP2
-push local 0
-push constant 0
-eq
-not
-push this 3
-not
-and
-not
-if-goto WHILE_END2
-call Keyboard.keyPressed 0
-pop local 0
-push this 0
-call Bat.move 1
-pop temp 0
-push pointer 0
-call PongGame.moveBall 1
-pop temp 0
-push constant 50
-call Sys.wait 1
-pop temp 0
-goto WHILE_EXP2
-label WHILE_END2
-goto WHILE_EXP0
-label WHILE_END0
-push this 3
-if-goto IF_TRUE3
-goto IF_FALSE3
-label IF_TRUE3
-push constant 10
-push constant 27
-call Output.moveCursor 2
-pop temp 0
-push constant 9
-call String.new 1
-push constant 71
-call String.appendChar 2
-push constant 97
-call String.appendChar 2
-push constant 109
-call String.appendChar 2
-push constant 101
-call String.appendChar 2
-push constant 32
-call String.appendChar 2
-push constant 79
-call String.appendChar 2
-push constant 118
-call String.appendChar 2
-push constant 101
-call String.appendChar 2
-push constant 114
-call String.appendChar 2
-call Output.printString 1
-pop temp 0
-label IF_FALSE3
-push constant 0
-return
-function PongGame.moveBall 5
-push argument 0
-pop pointer 0
-push this 1
-call Ball.move 1
-pop this 2
-push this 2
-push constant 0
-gt
-push this 2
-push this 5
-eq
-not
-and
-if-goto IF_TRUE0
-goto IF_FALSE0
-label IF_TRUE0
-push this 2
-pop this 5
-push constant 0
-pop local 0
-push this 0
-call Bat.getLeft 1
-pop local 1
-push this 0
-call Bat.getRight 1
-pop local 2
-push this 1
-call Ball.getLeft 1
-pop local 3
-push this 1
-call Ball.getRight 1
-pop local 4
-push this 2
-push constant 4
-eq
-if-goto IF_TRUE1
-goto IF_FALSE1
-label IF_TRUE1
-push local 1
-push local 4
-gt
-push local 2
-push local 3
-lt
-or
-pop this 3
-push this 3
-not
-if-goto IF_TRUE2
-goto IF_FALSE2
-label IF_TRUE2
-push local 4
-push local 1
-push constant 10
-add
-lt
-if-goto IF_TRUE3
-goto IF_FALSE3
-label IF_TRUE3
-push constant 1
-neg
-pop local 0
-goto IF_END3
-label IF_FALSE3
-push local 3
-push local 2
-push constant 10
-sub
-gt
-if-goto IF_TRUE4
-goto IF_FALSE4
-label IF_TRUE4
-push constant 1
-pop local 0
-label IF_FALSE4
-label IF_END3
-push this 6
-push constant 2
-sub
-pop this 6
-push this 0
-push this 6
-call Bat.setWidth 2
-pop temp 0
-push this 4
-push constant 1
-add
-pop this 4
-push constant 22
-push constant 7
-call Output.moveCursor 2
-pop temp 0
-push this 4
-call Output.printInt 1
-pop temp 0
-label IF_FALSE2
-label IF_FALSE1
-push this 1
-push local 0
-call Ball.bounce 2
-pop temp 0
-label IF_FALSE0
-push constant 0
-return
+	PongGame
+	<classVarDec>
+		PongGame
+		instance
+	</classVarDec>
+	<classVarDec>
+		Bat
+		bat
+	</classVarDec>
+	<classVarDec>
+		Ball
+		ball
+	</classVarDec>
+	<classVarDec>
+		wall
+	</classVarDec>
+	<classVarDec>
+		exit
+	</classVarDec>
+	<classVarDec>
+		score
+	</classVarDec>
+	<classVarDec>
+		lastWall
+	</classVarDec>
+	<classVarDec>
+		batWidth
+	</classVarDec>
+	function new
+		PongGame
+		new
+			<subroutineBody>
+			<statements>
+				call
+					Screen
+					clearScreen
+					batWidth
+							50
+					bat
+							Bat
+							new
+										230
+										229
+										batWidth
+										7
+					ball
+							Ball
+							new
+										253
+										222
+										0
+										511
+										0
+										229
+				call
+					ball
+					setDestination
+								400
+								0
+				call
+					Screen
+					drawRectangle
+								0
+								238
+								511
+								240
+				call
+					Output
+					moveCursor
+								22
+								0
+				call
+					Output
+					printString
+								<stringConstant> Score: 0  </stringConstant>
+					exit
+					score
+							0
+					wall
+							0
+					lastWall
+							0
+				return
+			</statements>
+			</subroutineBody>
+	function dispose
+		dispose
+			<subroutineBody>
+			<statements>
+				call
+					bat
+					dispose
+				call
+					ball
+					dispose
+				call
+					Memory
+					deAlloc
+				return
+			</statements>
+			</subroutineBody>
+	function newInstance
+		newInstance
+			<subroutineBody>
+			<statements>
+					instance
+							PongGame
+							new
+				return
+			</statements>
+			</subroutineBody>
+	function getInstance
+		PongGame
+		getInstance
+			<subroutineBody>
+			<statements>
+				return
+							instance
+			</statements>
+			</subroutineBody>
+	function run
+		run
+			<subroutineBody>
+			<varDec>
+				key
+			</varDec>
+			<statements>
+				<whileStatement>
+					<keyword> while </keyword>
+								exit
+					<statements>
+						<whileStatement>
+							<keyword> while </keyword>
+											key
+											0
+												exit
+							<statements>
+									key
+											Keyboard
+											keyPressed
+								call
+									bat
+									move
+								call
+									moveBall
+								call
+									Sys
+									wait
+												50
+							</statements>
+						</whileStatement>
+						<ifStatement>
+							<keyword> if </keyword>
+									key
+									130
+							<statements>
+								call
+									bat
+									setDirection
+												1
+							</statements>
+							<statements>
+								<ifStatement>
+									<keyword> if </keyword>
+											key
+											132
+									<statements>
+										call
+											bat
+											setDirection
+														2
+									</statements>
+									<statements>
+										<ifStatement>
+											<keyword> if </keyword>
+													key
+													140
+											<statements>
+													exit
+											</statements>
+										</ifStatement>
+									</statements>
+								</ifStatement>
+							</statements>
+						</ifStatement>
+						<whileStatement>
+							<keyword> while </keyword>
+														key
+														0
+												exit
+							<statements>
+									key
+											Keyboard
+											keyPressed
+								call
+									bat
+									move
+								call
+									moveBall
+								call
+									Sys
+									wait
+												50
+							</statements>
+						</whileStatement>
+					</statements>
+				</whileStatement>
+				<ifStatement>
+					<keyword> if </keyword>
+							exit
+					<statements>
+						call
+							Output
+							moveCursor
+										10
+										27
+						call
+							Output
+							printString
+										<stringConstant> Game Over  </stringConstant>
+					</statements>
+				</ifStatement>
+				return
+			</statements>
+			</subroutineBody>
+	function moveBall
+		moveBall
+			<subroutineBody>
+			<varDec>
+				bouncingDirection
+				batLeft
+				batRight
+				ballLeft
+				ballRight
+			</varDec>
+			<statements>
+					wall
+							ball
+							move
+				<ifStatement>
+					<keyword> if </keyword>
+									wall
+									0
+												wall
+												lastWall
+					<statements>
+							lastWall
+									wall
+							bouncingDirection
+									0
+							batLeft
+									bat
+									getLeft
+							batRight
+									bat
+									getRight
+							ballLeft
+									ball
+									getLeft
+							ballRight
+									ball
+									getRight
+						<ifStatement>
+							<keyword> if </keyword>
+									wall
+									4
+							<statements>
+									exit
+													batLeft
+													ballRight
+													batRight
+													ballLeft
+								<ifStatement>
+									<keyword> if </keyword>
+												exit
+									<statements>
+										<ifStatement>
+											<keyword> if </keyword>
+													ballRight
+															batLeft
+														add
+															10
+											<statements>
+													bouncingDirection
+															sub
+																1
+											</statements>
+											<statements>
+												<ifStatement>
+													<keyword> if </keyword>
+															ballLeft
+																	batRight
+																sub
+																	10
+													<statements>
+															bouncingDirection
+																	1
+													</statements>
+												</ifStatement>
+											</statements>
+										</ifStatement>
+											batWidth
+													batWidth
+												sub
+													2
+										call
+											bat
+											setWidth
+														batWidth
+											score
+													score
+												add
+													1
+										call
+											Output
+											moveCursor
+														22
+														7
+										call
+											Output
+											printInt
+														score
+									</statements>
+								</ifStatement>
+							</statements>
+						</ifStatement>
+						call
+							ball
+							bounce
+										bouncingDirection
+					</statements>
+				</ifStatement>
+				return
+			</statements>
+			</subroutineBody>

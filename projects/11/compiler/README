@@ -4,13 +4,13 @@ David Ponarovsky, ID 208504050, david.ponarovsky@cs.huji.ac.il
 Michael Cohen, ID 314884826, michael.cohen3@cs.huji.ac.il
 ===============================================================================
 
-                           Project 10
+                           Project 11
                            -----------------------
 
 Submitted Files
 ---------------
 README - This file.
-JackAnalyzer - the starter script.
+JackCompiler - the starter script.
 Makefile - the initialization script.
 main.py - the entry point.
 vmparser.py - the core of parsing preprocessing.

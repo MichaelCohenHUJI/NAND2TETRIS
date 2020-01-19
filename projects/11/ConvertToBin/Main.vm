@@ -1,109 +1,142 @@
-function Main.main 1
-push constant 8001
-push constant 16
-push constant 1
-neg
-call Main.fillMemory 3
-pop temp 0
-push constant 8000
-call Memory.peek 1
-pop local 0
-push local 0
-call Main.convert 1
-pop temp 0
-push constant 0
-return
-function Main.convert 3
-push constant 0
-not
-pop local 2
-label WHILE_EXP0
-push local 2
-not
-if-goto WHILE_END0
-push local 1
-push constant 1
-add
-pop local 1
-push local 0
-call Main.nextMask 1
-pop local 0
-push local 1
-push constant 16
-gt
-not
-if-goto IF_TRUE0
-goto IF_FALSE0
-label IF_TRUE0
-push argument 0
-push local 0
-and
-push constant 0
-eq
-not
-if-goto IF_TRUE1
-goto IF_FALSE1
-label IF_TRUE1
-push constant 8000
-push local 1
-add
-push constant 1
-call Memory.poke 2
-pop temp 0
-goto IF_END1
-label IF_FALSE1
-push constant 8000
-push local 1
-add
-push constant 0
-call Memory.poke 2
-pop temp 0
-label IF_END1
-goto IF_END0
-label IF_FALSE0
-push constant 0
-pop local 2
-label IF_END0
-goto WHILE_EXP0
-label WHILE_END0
-push constant 0
-return
-function Main.nextMask 0
-push argument 0
-push constant 0
-eq
-if-goto IF_TRUE0
-goto IF_FALSE0
-label IF_TRUE0
-push constant 1
-return
-goto IF_END0
-label IF_FALSE0
-push argument 0
-push constant 2
-call Math.multiply 2
-return
-label IF_END0
-function Main.fillMemory 0
-label WHILE_EXP0
-push argument 1
-push constant 0
-gt
-not
-if-goto WHILE_END0
-push argument 0
-push argument 2
-call Memory.poke 2
-pop temp 0
-push argument 1
-push constant 1
-sub
-pop argument 1
-push argument 0
-push constant 1
-add
-pop argument 0
-goto WHILE_EXP0
-label WHILE_END0
-push constant 0
-return
+	Main
+	function main
+		main
+			<subroutineBody>
+			<varDec>
+				value
+			</varDec>
+			<statements>
+				call
+					Main
+					fillMemory
+								8001
+								16
+								sub
+									1
+					value
+							Memory
+							peek
+										8000
+				call
+					Main
+					convert
+								value
+				return
+			</statements>
+			</subroutineBody>
+	function convert
+		convert
+			value
+			<subroutineBody>
+			<varDec>
+				mask
+				position
+			</varDec>
+			<varDec>
+				loop
+			</varDec>
+			<statements>
+					loop
+				<whileStatement>
+					<keyword> while </keyword>
+							loop
+					<statements>
+							position
+									position
+								add
+									1
+							mask
+									Main
+									nextMask
+												mask
+						<ifStatement>
+							<keyword> if </keyword>
+												position
+												16
+							<statements>
+								<ifStatement>
+									<keyword> if </keyword>
+																value
+																mask
+														0
+									<statements>
+										call
+											Memory
+											poke
+														8000
+													add
+														position
+														1
+									</statements>
+									<statements>
+										call
+											Memory
+											poke
+														8000
+													add
+														position
+														0
+									</statements>
+								</ifStatement>
+							</statements>
+							<statements>
+									loop
+							</statements>
+						</ifStatement>
+					</statements>
+				</whileStatement>
+				return
+			</statements>
+			</subroutineBody>
+	function nextMask
+		nextMask
+			mask
+			<subroutineBody>
+			<statements>
+				<ifStatement>
+					<keyword> if </keyword>
+							mask
+							0
+					<statements>
+						return
+									1
+					</statements>
+					<statements>
+						return
+									mask
+								call mull
+									2
+					</statements>
+				</ifStatement>
+			</statements>
+			</subroutineBody>
+	function fillMemory
+		fillMemory
+			startAddress
+			length
+			value
+			<subroutineBody>
+			<statements>
+				<whileStatement>
+					<keyword> while </keyword>
+							length
+							0
+					<statements>
+						call
+							Memory
+							poke
+										startAddress
+										value
+							length
+									length
+								sub
+									1
+							startAddress
+									startAddress
+								add
+									1
+					</statements>
+				</whileStatement>
+				return
+			</statements>
+			</subroutineBody>
